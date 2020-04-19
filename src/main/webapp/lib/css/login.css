@@ -1,6 +1,4 @@
 *{
-    padding: 0;
-    margin: 0;
     font-family: "PingFangSC-Regular","Microsoft Yahei",sans-serif;
 }
 main{
@@ -39,7 +37,16 @@ main{
     position: absolute;
     top: 0em;
     right: 0em;
-    width: 36%;
     padding: 6em 5em;
-    font-weight: 300;
+}
+footer{
+    display: block;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top:750px;
+    margin: auto;
+    z-index: 1;
+    line-height: 30px;
 }
