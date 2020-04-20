@@ -31,6 +31,7 @@
     <div class="container">
 
         <from class="layui-form" action="">
+            <h1 class="welcome" style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">欢迎您,请登陆</h1>
             <div class="layui-form-item">
                 <br />
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">用户名</label>

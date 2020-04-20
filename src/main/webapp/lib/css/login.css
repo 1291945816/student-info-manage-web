@@ -1,5 +1,7 @@
 *{
     font-family: "PingFangSC-Regular","Microsoft Yahei",sans-serif;
+    margin: 0;
+    padding: 0;
 }
 main{
     display: block;
@@ -17,11 +19,15 @@ main{
     box-shadow: 4px 4px 20px rgba(0,0,0,.5);
 
 }
+html,body{
+    height: 100%;
+}
 .body{
     background-image: url(../images/grass.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: block;
     background-size:cover ;
     background-color: #F2F2F2;
 
@@ -44,8 +50,8 @@ footer{
     font-size: 15px;
     text-align: center;
     width: 100%;
-    position: absolute;
-    top:750px;
+    position: relative;
+    top:80em;
     margin: auto;
     z-index: 1;
     line-height: 30px;
