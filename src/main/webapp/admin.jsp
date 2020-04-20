@@ -18,6 +18,7 @@
         <li class="layui-nav-item" style="right: 75em" >
             <a style="font-size: 30px;color: aliceblue">管理员/教师信息操作界面</a>
         </li>
+        <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>
         <li class="layui-nav-item"><a href="#">退出</a></li>
     </ul>
