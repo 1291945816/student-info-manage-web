@@ -1,5 +1,11 @@
+<%--
+Created by IntelliJ IDEA.
+User: mac12
+Date: 2020/4/26
+Time: 17:51
+To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +77,7 @@
                 </div>
             </div>
             <!--输出错误消息-->
-            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getSession().getAttribute("error_msg")== null?"":request.getSession().getAttribute("error_msg").toString()%></p>
+            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getSession().getAttribute("error_msg")== null?" ":request.getSession().getAttribute("error_msg").toString()%></p>
         </from>
 
 
