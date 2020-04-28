@@ -13,7 +13,7 @@ import java.io.IOException;
  * @description:
  */
 @WebFilter("/*")
-public class DefinFilter implements Filter {
+public class AuthFilter implements Filter {
     public void destroy() {
     }
 
