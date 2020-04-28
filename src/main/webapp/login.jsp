@@ -36,7 +36,7 @@ To change this template use File | Settings | File Templates.
 <main >
     <div class="container">
 
-        <from class="layui-form" action="">
+        <form class="layui-form" id="form_login" method="post">
             <h1 class="welcome" style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">欢迎您,请登陆</h1>
             <div class="layui-form-item">
                 <br />
@@ -48,7 +48,7 @@ To change this template use File | Settings | File Templates.
             <div class="layui-form-item">
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px " >密码</label>
                 <div class="layui-input-block">
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off"  style="width:200px;" class="layui-input">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"   style="width:200px;" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -68,8 +68,8 @@ To change this template use File | Settings | File Templates.
                     <div class="layui-input-block">
                         <table border="0" style="border-collapse: separate;border-spacing: 10px">
                             <tr>
-                                <td> <button class="layui-btn" lay-submit lay-filter="">学生登陆</button></td>
-                                <td> <button class="layui-btn" lay-submit lay-filter="">教师登陆</button></td>
+                                <td><button  class="layui-btn" type="submit"  formaction="userLoginServlet" >学生登陆</button>
+                                <td> <button  class="layui-btn" type="submit"  formaction="adminLoginServlet" >教师登陆</button>
                             </tr>
                         </table>
 
@@ -77,8 +77,8 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
             <!--输出错误消息-->
-            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getSession().getAttribute("error_msg")== null?" ":request.getSession().getAttribute("error_msg").toString()%></p>
-        </from>
+            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getAttribute("error_msg")== null?" ":request.getAttribute("error_msg").toString()%></p>
+        </form>
 
 
     </div>

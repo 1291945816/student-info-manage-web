@@ -9,6 +9,8 @@ public class Admin {
     private String admin_username;
     private String admin_password;
 
+    public Admin() {
+    }
 
     public Admin(String admin_username, String admin_password) {
         this.admin_username = admin_username;
