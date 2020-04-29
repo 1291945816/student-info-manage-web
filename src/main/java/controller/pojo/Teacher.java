@@ -1,11 +1,14 @@
 package controller.pojo;
 
+import java.io.Serializable;
+
 /**
  * @author: Hps
  * @date: 2020/4/20 21:57
  * @description:
  */
-public class Teacher {
+public class Teacher implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
     private Integer age;

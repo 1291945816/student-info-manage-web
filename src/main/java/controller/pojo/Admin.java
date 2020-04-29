@@ -1,11 +1,15 @@
 package controller.pojo;
 
+import java.io.Serializable;
+
 /**
  * @author: Hps
  * @date: 2020/4/20 21:45
  * @description:
  */
-public class Admin {
+public class Admin implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String admin_username;
     private String admin_password;
 

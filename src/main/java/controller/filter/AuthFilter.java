@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date: 2020/4/28 23:27
  * @description:
  */
-@WebFilter("/*")
+
 public class AuthFilter implements Filter {
     public void destroy() {
     }

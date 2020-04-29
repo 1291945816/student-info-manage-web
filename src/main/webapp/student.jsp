@@ -30,7 +30,7 @@
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:">用户信息</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:">查看个人信息</a></dd>
+                <dd><a onclick="show_info()">查看个人信息</a></dd>
                 <dd><a href="javascript:">修改个人信息</a></dd>
                 <dd><a href="javascript:">查看班级信息</a></dd>
             </dl>
@@ -41,9 +41,9 @@
                 <dd><a href="">查看已选课程</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="javascript:" onclick="query_grade()" >查看成绩</a></li>
+        <li class="layui-nav-item"><a  onclick="" >查看成绩</a></li>
     </ul>
-    <div id="content" style="text-align: center">
+    <div id="content" >
 
     </div>
 </main>

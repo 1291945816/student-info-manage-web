@@ -1,5 +1,6 @@
 package controller.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,8 @@ import java.util.Date;
  * @date: 2020/4/20 21:55
  * @description:
  */
-public class Student {
+public class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
     private String sex;
@@ -23,6 +25,7 @@ public class Student {
         this.department = department;
         this.class_ = class_;
     }
+    public  Student(){};
 
     public String getId() {
         return id;
