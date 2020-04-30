@@ -25,7 +25,8 @@ function show_info() {
         url: '/test/userservlet?action=query_studentInfo',
         data: '',
         success: function (info) {
-            var html = "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
+            var html ="<h1 style='text-align: center'>个人信息</h1>"
+                +"<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                 +"<tbody style='font-size: 30px'>"
                 +"<tr>" +"<td>name: </td>" +"<td>"+info.name+"</td>" + "</tr>"
                 +"<tr>" +"<td>id: </td>" +"<td>"+info.id+"</td>" + "</tr>"

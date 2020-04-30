@@ -35,7 +35,6 @@ public class Userservlet extends HttpServlet {
         try {
             Method method = userservletClass.getDeclaredMethod(action,HttpServletRequest.class,HttpServletResponse.class);
 
-
             method.invoke(this,req,resp);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
