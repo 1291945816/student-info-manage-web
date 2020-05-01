@@ -22,35 +22,32 @@ public class StudentDao {
      */
     public Student student_info(String userid) {
         conn=JDBCUtils.getConnection();
-        String sql = "select * from student where id=?";
+        String sql = "select * from student where sno=?";
+        Student student =null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, userid);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                Student student = new Student();
+                 student = new Student();
                 student.setId(userid);
                 student.setName(resultSet.getString("name"));
                 student.setSex(resultSet.getString("sex"));
                 student.setDepartment(resultSet.getString("department"));
-                student.setClass_(resultSet.getString("class"));
+                student.setClass_(resultSet.getString("classId"));
                 student.setBirthday(resultSet.getDate("birthday"));
-                return student;
-            } else {
-                return null;
+
             }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+
         }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.closeConnection(conn);
         }
+        return student;
+
     }
 
     /**
@@ -60,60 +57,66 @@ public class StudentDao {
      */
     public Class queryClass(String classId){
         conn=JDBCUtils.getConnection();
-        String sql = "select * from class where id=? ";
+        String sql = "select * from class where classId=? ";
+        Class class_=null;
         try {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1,classId);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
-                Class class_=new Class("","");
-                class_.setId(resultSet.getString("id"));
+                 class_=new Class("","");
+                class_.setId(resultSet.getString("classId"));
                 String classTeacherId=resultSet.getString("classteacher");
-                sql="select name from teacher where id=? ";
+                sql="select name from teacher where jobId=? ";
                 statement=conn.prepareStatement(sql);
                 statement.setString(1,classTeacherId);
                  resultSet = statement.executeQuery();
                  if(resultSet.next()){
                      class_.setClassTeacher(resultSet.getString("name"));
-                     return class_;
                  }
 
             }
 
 
         } catch (SQLException e) {
-            return  null;
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(conn);
         }
-        return null;
+        return class_;
 
     }
 
     public List<Student> queryAllStudent(String classId){
         conn=JDBCUtils.getConnection();
-        String sql = "select id,name,department from student where class=?";
+        String sql = "select sno,name,department from student where classId=?";
+        List<Student> list=null;
+        Student student=null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,classId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<Student> list=new ArrayList<Student>();
-            Student student=null;
+             list=new ArrayList<Student>();
             while(resultSet.next()){
                  student=new Student();
                  student.setDepartment(resultSet.getString("department"));
-                 student.setId(resultSet.getString("id"));
+                 student.setId(resultSet.getString("sno"));
                  student.setName(resultSet.getString("name"));
                  list.add(student);
             }
-            return list;
 
 
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }finally {
+            JDBCUtils.closeConnection(conn);
         }
-
-
-
+        return list;
     }
+
+
+
+
 
 }

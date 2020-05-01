@@ -1,10 +1,9 @@
 package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
-import com.mysql.cj.xdevapi.JsonArray;
 import controller.dao.StudentDao;
+import controller.pojo.Class;
 import controller.pojo.Student;
-import controller.pojo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Hps
@@ -30,7 +32,7 @@ public class Userservlet extends HttpServlet {
         action=req.getParameter("action");
 
 
-        Class<Userservlet> userservletClass = Userservlet.class;
+        java.lang.Class<Userservlet> userservletClass = Userservlet.class;
       //  try {
         try {
             Method method = userservletClass.getDeclaredMethod(action,HttpServletRequest.class,HttpServletResponse.class);
@@ -69,6 +71,23 @@ public class Userservlet extends HttpServlet {
             String student_json = JSON.toJSONString(student);
             System.out.println("1");
             response.getWriter().write(student_json);
+        }
+
+
+    }
+    public void query_classInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+        String sno = (String)request.getSession().getAttribute("username");
+        StudentDao studentDao=new StudentDao();
+        Student student=studentDao.student_info("2000100101");
+        if(student != null) {
+            Class aClass = studentDao.queryClass(student.getClass_());
+            List<Student> students=studentDao.queryAllStudent(student.getClass_());
+            Map<String,Object> map=new HashMap<String, Object>();
+            map.put("Class",aClass);
+            map.put("students",students);
+            String s = JSON.toJSONString(map);
+            response.getWriter().write(s);
+
         }
 
 

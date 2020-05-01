@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>学生管理系统</title>
     <meta name="author" content="kilig">
-    <link rel="stylesheet" type="text/css" href="./lib/layui/layui-v2.5.6/layui/css/layui.css">
-    <script src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/layui/layui-v2.5.6/layui/css/layui.css" media="all">
+    <script type="text/javascript" src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
     <link rel="icon" href="./lib/images/icon.ico" type="image/icon">
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="./lib/css/student.css">
 
 </head>
@@ -37,7 +37,7 @@
             <dl class="layui-nav-child">
                 <dd><a onclick="show_info()">查看个人信息</a></dd>
                 <dd><a href="javascript:">修改个人信息</a></dd>
-                <dd><a href="javascript:">查看班级信息</a></dd>
+                <dd><a onclick="show_classInfo()">查看班级信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
@@ -55,5 +55,5 @@
     </div>
 </main>
 </body>
-<script src="lib/js/student.js"></script>
+<script type="text/javascript" src="lib/js/student.js"></script>
 </html>

@@ -1,5 +1,6 @@
 package controller.utils;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.imageio.IIOException;
@@ -42,4 +43,12 @@ public class JDBCUtils {
             return null;
         }
     }
+    public static void closeConnection(Connection connection){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
