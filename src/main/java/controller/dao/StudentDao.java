@@ -1,8 +1,11 @@
 package controller.dao;
 
 import controller.pojo.Class;
+import controller.pojo.Course;
 import controller.pojo.Student;
+import controller.pojo.StudentGrade;
 import controller.utils.JDBCUtils;
+import org.junit.Test;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -87,6 +90,11 @@ public class StudentDao {
 
     }
 
+    /**
+     * 用于查询所有的相同班级的同学
+     * @param classId 班级
+     * @return
+     */
     public List<Student> queryAllStudent(String classId){
         conn=JDBCUtils.getConnection();
         String sql = "select sno,name,department from student where classId=?";
@@ -113,6 +121,99 @@ public class StudentDao {
             JDBCUtils.closeConnection(conn);
         }
         return list;
+    }
+
+    /**
+     * 根据学号获取该同学的所有选课信息
+     * @param usernamId
+     * @return
+     */
+    public List<Course> queryAllCourse(String usernamId){
+        conn= JDBCUtils.getConnection();
+        String sql= "select course.courseid,course.name,startdate,credit,teacher.name as teacher"
+        +" from course ,teacher,sc "
+        +"where"
+        +" sc.courseid = course.courseid and sc.sno=?"
+        +" and teacher.jobId = course.teacher";
+        List<Course> list=null;
+        Course course=null;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,usernamId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            if(resultSet.getRow() > 0){
+                list=new ArrayList<Course>();
+                resultSet.beforeFirst();
+                while(resultSet.next())
+                {
+                    course= new Course();
+                    course.setCourseId(resultSet.getString("courseid"));
+                    course.setName(resultSet.getString("name"));
+                    course.setStartDate(resultSet.getString("startdate"));
+                    course.setCredit(resultSet.getInt("credit"));
+                    course.setTeacher(resultSet.getString("teacher"));
+                    list.add(course);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            JDBCUtils.closeConnection(conn);
+        }
+
+        return list;
+    }
+
+    public List<StudentGrade> queryAllCourseGrade(String sno){
+        conn=JDBCUtils.getConnection();
+        List<StudentGrade> list=null;
+        StudentGrade studentGrade=null;
+        String sql="select course.courseid,course.name,sc.daygrade,sc.examgrade,sc.grade,course.credit " +
+                "from course ,sc " +
+                "where " +
+                "sc.courseid = course.courseid and sc.sno=?";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,sno);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            if(resultSet.getRow()>0){
+                list=new ArrayList<StudentGrade>();
+                resultSet.beforeFirst();
+                while(resultSet.next()){
+                    studentGrade=new StudentGrade();
+                    studentGrade.setCourseId(resultSet.getString("courseid"));
+                    studentGrade.setName(resultSet.getString("name"));
+                    studentGrade.setCredit(resultSet.getInt("credit"));
+                    studentGrade.setDaygrade(resultSet.getFloat("daygrade"));
+                    studentGrade.setExamgrade(resultSet.getFloat("examgrade"));
+                    studentGrade.setGrade(resultSet.getFloat("grade"));
+                    list.add(studentGrade);
+                }
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(conn);
+        }
+        return list;
+    }
+
+
+    @Test
+    public  void testDataConnection(){
+        StudentDao studentDao= new StudentDao();
+
+        List<StudentGrade> studentGrades = studentDao.queryAllCourseGrade("2000100101");
+        System.out.println(studentGrades);
+
+
     }
 
 

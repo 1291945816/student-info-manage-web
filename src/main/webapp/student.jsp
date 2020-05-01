@@ -43,10 +43,10 @@
         <li class="layui-nav-item">
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
-                <dd><a href="">查看已选课程</a></dd>
+                <dd><a onclick="show_allCourseInfo()">查看已选课程</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a  onclick="" >查看成绩</a></li>
+        <li class="layui-nav-item"><a  onclick="show_grade()" >查看成绩</a></li>
     </ul>
     </div>
     <div id="content" >

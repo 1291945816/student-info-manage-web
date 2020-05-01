@@ -3,7 +3,9 @@ package controller.servlet;
 import com.alibaba.fastjson.JSON;
 import controller.dao.StudentDao;
 import controller.pojo.Class;
+import controller.pojo.Course;
 import controller.pojo.Student;
+import controller.pojo.StudentGrade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -87,10 +89,71 @@ public class Userservlet extends HttpServlet {
             map.put("students",students);
             String s = JSON.toJSONString(map);
             response.getWriter().write(s);
+        }
+    }
+
+    public void query_allCourse(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+        String sno = (String)request.getSession().getAttribute("username");
+        StudentDao studentDao=new StudentDao();
+        List<Course> list = studentDao.queryAllCourse("2000100101");
+        Map<String,Object> map= new HashMap<String, Object>();
+
+        //状态码  500 表示没有该数据
+        //200 表示查到有关数据  并且写入数据
+        if(list == null){
+            map.put("code","500");
+        }else
+        {
+            map.put("code","200");
+            map.put("courses",list);
+        }
+        String s = JSON.toJSONString(map);
+        response.getWriter().write(s);
+    }
+
+    public void query_allCourseGrade(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        String sno = (String)request.getSession().getAttribute("username");
+        StudentDao studentDao=new StudentDao();
+
+        List<StudentGrade> studentGrades = studentDao.queryAllCourseGrade("2000100101");
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        if(studentGrades == null){
+            map.put("code","500");
+        }else
+        {
+            //优秀门数，不及格门数,及格门数
+            int count=0,failCount=0,passCount=0;
+            //求平均分
+            double avgGrade=0,sumCrdit=0,sumGrade=0;
+            double creditGrade=0; //学分绩
+            for (StudentGrade studentGrade:studentGrades){
+                if(studentGrade.getGrade() >= 60){
+                    passCount++;
+                    if(studentGrade.getGrade()>=90)
+                        count++;
+
+                }else {
+                    failCount++;
+                }
+                sumCrdit+=studentGrade.getCredit();
+                sumGrade+=studentGrade.getGrade();
+                creditGrade+=studentGrade.getGrade()*studentGrade.getCredit();
+            }
+            avgGrade=sumGrade/(failCount+passCount);
+            creditGrade/=sumCrdit;
+
+            map.put("code","200");
+            map.put("grades",studentGrades);
+            map.put("count",count);
+            map.put("failCount",failCount);
+            map.put("passCount",passCount);
+            map.put("avgGrade",avgGrade);
+            map.put("creditGrade",creditGrade);
 
         }
-
-
+        String s = JSON.toJSONString(map);
+        response.getWriter().write(s);
     }
 
 
