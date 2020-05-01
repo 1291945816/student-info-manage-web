@@ -22,13 +22,13 @@ public class LoginDaoImpl implements LoginDao {
     public User login(User loginUser) {
         try {
             conn=JDBCUtils.getConnection();
-            String sql = "select * from user where username=? and password=?";
+            String sql = "select sno,password from student where sno=? and password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,loginUser.getUsername());
             preparedStatement.setString(2,loginUser.getPassword());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                return new User(resultSet.getString("username"),resultSet.getString("password"));
+                return new User(resultSet.getString("sno"),resultSet.getString("password"));
             }else
             {
                 return null;
@@ -44,13 +44,13 @@ public class LoginDaoImpl implements LoginDao {
     public Admin login(Admin loginAdmin) {
         try {
             conn=JDBCUtils.getConnection();
-            String sql = "select * from admin where admin_username=? and admin_password=?";
+            String sql = "select jobId,password from teacher where jobId=? and password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,loginAdmin.getAdmin_username());
             preparedStatement.setString(2,loginAdmin.getAdmin_password());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                return new Admin(resultSet.getString("admin_username"),resultSet.getString("admin_password"));
+                return new Admin(resultSet.getString("jobId"),resultSet.getString("password"));
             }else
             {
                 return null;

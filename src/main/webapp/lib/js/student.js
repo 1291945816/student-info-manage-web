@@ -125,7 +125,7 @@ function table_init() {
         var table = layui.table;
         table.init('data_parse', {
             limit: 10,
-            height: 315,
+            height: 450,
             page: true,
 
         })
