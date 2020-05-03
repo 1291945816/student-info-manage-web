@@ -4,86 +4,86 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author: Hps
- * @date: 2020/4/20 21:55
- * @description:
+ * @author: 蒙素靓
+ * @date: 2020/5/3 20:42
+ * @description: 学生类
  */
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String id;
-    private String name;
-    private String sex;
-    private Date birthday;
-    private String department;
-    private String class_;
+    private String sno;
+    private String sname;
+    private String ssex;
+    private Date sbirth_day;
+    private String clid;
+    private String spassword;
 
-    public Student(String id, String name, String sex, Date birthday, String department, String class_) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.birthday = birthday;
-        this.department = department;
-        this.class_ = class_;
+    public Student(String sno, String sname, String ssex, Date sbirth_day, String clid, String spassword) {
+        this.sno = sno;
+        this.sname = sname;
+        this.ssex = ssex;
+        this.sbirth_day = sbirth_day;
+        this.clid = clid;
+        this.spassword = spassword;
     }
     public  Student(){};
 
-    public String getId() {
-        return id;
+    public String getSno() {
+        return sno;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 
-    public String getName() {
-        return name;
+    public String getSname() {
+        return sname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
-    public String getSex() {
-        return sex;
+    public String getSsex() {
+        return ssex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setSsex(String ssex) {
+        this.ssex = ssex;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Date getSbirth_day() {
+        return sbirth_day;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setSbirth_day(Date sbirth_day) {
+        this.sbirth_day = sbirth_day;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getClid() {
+        return clid;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setClid(String clid) {
+        this.clid = clid;
     }
 
-    public String getClass_() {
-        return class_;
+    public String getSpassword() {
+        return spassword;
     }
 
-    public void setClass_(String class_) {
-        this.class_ = class_;
+    public void setSpassword(String spassword) {
+        this.spassword = spassword;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
-                ", department='" + department + '\'' +
-                ", class_='" + class_ + '\'' +
+                "sno='" + sno + '\'' +
+                ", sname='" + sname + '\'' +
+                ", ssex='" + ssex + '\'' +
+                ", sbirth_day=" + sbirth_day +
+                ", clid='" + clid + '\'' +
+                ", spassword='" + spassword + '\'' +
                 '}';
     }
 }

@@ -68,6 +68,6 @@
     </div>
 </main>
 </body>
-<script src="lib/js/student.js"></script>
+<script src="lib/js/student.js" ></script>
 </html>
 
