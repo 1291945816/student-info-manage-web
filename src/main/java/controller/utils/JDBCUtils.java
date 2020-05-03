@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * @author: Hps
  * @date: 2020/4/20 22:11
- * @description:
+ * @description: 一个jdbc工具类，相关的配置位于 resource内，提供了数据课的连接、关闭
  */
 public class JDBCUtils {
     private static DataSource dataSource;

@@ -1,4 +1,4 @@
-package controller.pojo;
+package model.pojo;
 
 /**
  * @author: Hps

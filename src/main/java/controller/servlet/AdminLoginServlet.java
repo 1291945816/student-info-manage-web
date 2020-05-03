@@ -2,8 +2,7 @@ package controller.servlet;
 
 import controller.dao.LoginDaoImpl;
 import controller.dao.service.LoginDao;
-import controller.pojo.Admin;
-import controller.pojo.User;
+import model.pojo.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +20,8 @@ import java.io.IOException;
 public class AdminLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("error_msg");
+
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String checkedCode = req.getParameter("checkedCode");

@@ -1,8 +1,8 @@
 package controller.dao;
 
 import controller.dao.service.LoginDao;
-import controller.pojo.Admin;
-import controller.pojo.User;
+import model.pojo.Admin;
+import model.pojo.User;
 import controller.utils.JDBCUtils;
 import org.junit.Test;
 

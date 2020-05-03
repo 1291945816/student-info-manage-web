@@ -1,7 +1,7 @@
 package controller.dao.service;
 
-import controller.pojo.Admin;
-import controller.pojo.User;
+import model.pojo.Admin;
+import model.pojo.User;
 
 /**
  * @author: Hps
