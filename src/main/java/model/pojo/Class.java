@@ -1,40 +1,51 @@
 package model.pojo;
 
 /**
- * @author: Hps
- * @date: 2020/4/20 21:48
- * @description:
+ * @author: 蒙素靓
+ * @date: 2020/5/3 20:39
+ * @description: 班级类
  */
 public class Class {
-    private String id ;
-    private String classTeacher;
+    private String clid ;
+    private String dname;
+    private String clheader;
 
-    public Class(String id, String classTeacher) {
-        this.id = id;
-        this.classTeacher = classTeacher;
+    public Class(String clid, String dname, String clheader) {
+        this.clid = clid;
+        this.dname = dname;
+        this.clheader = clheader;
     }
 
-    public String getId() {
-        return id;
+    public String getClid() {
+        return clid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setClid(String clid) {
+        this.clid = clid;
     }
 
-    public String getClassTeacher() {
-        return classTeacher;
+    public String getDname() {
+        return dname;
     }
 
-    public void setClassTeacher(String classTeacher) {
-        this.classTeacher = classTeacher;
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
+
+    public String getClheader() {
+        return clheader;
+    }
+
+    public void setClheader(String clheader) {
+        this.clheader = clheader;
     }
 
     @Override
     public String toString() {
         return "Class{" +
-                "id='" + id + '\'' +
-                ", classTeacher='" + classTeacher + '\'' +
+                "clid='" + clid + '\'' +
+                ", dname='" + dname + '\'' +
+                ", clheader='" + clheader + '\'' +
                 '}';
     }
 }

@@ -1,77 +1,55 @@
 package model.pojo;
 
 /**
- * @author: Hps
- * @date: 2020/4/20 21:49
- * @description:
+ * @author: 蒙素靓
+ * @date: 2020/5/3 20:29
+ * @description: 课程类
  */
 public class Course {
-    private String courseId;
-    private String name;
-    private String startDate;
-    private Integer credit;
-    private String teacher;
+    private String cno;
+    private String cname;
+    private Double cnumber;
 
     public Course(){
 
     }
 
-    public Course(String courseId, String name, String startDate, Integer credit, String teacher) {
-        this.courseId = courseId;
-        this.name = name;
-        this.startDate = startDate;
-        this.credit = credit;
-        this.teacher = teacher;
+    public Course(String cno, String cname, Double cnumber) {
+        this.cno = cno;
+        this.cname = cname;
+        this.cnumber = cnumber;
     }
 
-    public String getCourseId() {
-        return courseId;
+    public String getCno() {
+        return cno;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setCno(String cno) {
+        this.cno = cno;
     }
 
-    public String getName() {
-        return name;
+    public String getCname() {
+        return cname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public Double getCnumber() {
+        return cnumber;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public Integer getCredit() {
-        return credit;
-    }
-
-    public void setCredit(Integer credit) {
-        this.credit = credit;
-    }
-
-    public String getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
+    public void setCnumber(Double cnumber) {
+        this.cnumber = cnumber;
     }
 
     @Override
     public String toString() {
         return "Course{" +
-                "courseId='" + courseId + '\'' +
-                ", name='" + name + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", credit=" + credit +
-                ", teacher='" + teacher + '\'' +
+                "cno='" + cno + '\'' +
+                ", cname='" + cname + '\'' +
+                ", cnumber=" + cnumber +
                 '}';
     }
 }

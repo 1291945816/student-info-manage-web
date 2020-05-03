@@ -1,40 +1,40 @@
 package model.pojo;
 
 /**
- * @author: Hps
- * @date: 2020/4/20 21:52
- * @description:
+ * @author: 蒙素靓
+ * @date: 2020/5/3 20:30
+ * @description: 部门类
  */
 public class Department {
-    private String name;
-    private String admin;
+    private String dname;
+    private String dleader;
 
-    public Department(String name, String admin) {
-        this.name = name;
-        this.admin = admin;
+    public Department(String dname, String dleader) {
+        this.dname = dname;
+        this.dleader = dleader;
     }
 
-    public String getName() {
-        return name;
+    public String getDname() {
+        return dname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDname(String dname) {
+        this.dname = dname;
     }
 
-    public String getAdmin() {
-        return admin;
+    public String getDleader() {
+        return dleader;
     }
 
-    public void setAdmin(String admin) {
-        this.admin = admin;
+    public void setDleader(String dleader) {
+        this.dleader = dleader;
     }
 
     @Override
     public String toString() {
         return "Department{" +
-                "name='" + name + '\'' +
-                ", admin='" + admin + '\'' +
+                "dname='" + dname + '\'' +
+                ", dleader='" + dleader + '\'' +
                 '}';
     }
 }

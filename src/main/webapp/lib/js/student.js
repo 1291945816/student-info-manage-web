@@ -61,11 +61,11 @@ function show_classInfo() {
                 +"</thead><tbody>";
             students_info.forEach(function (student_info) {
                 let id = student_info.id;
-               html2=html2
-                   +"<tr><td>"+id+"</td>"
-                   +"<td>"+student_info.name+"</td>"
-                   +"<td>"+student_info.department+"</td>"
-                   + "</tr>";
+                html2=html2
+                    +"<tr><td>"+id+"</td>"
+                    +"<td>"+student_info.name+"</td>"
+                    +"<td>"+student_info.department+"</td>"
+                    + "</tr>";
             });
             html2=html2+"</tbody></table>";
 
@@ -107,10 +107,10 @@ function show_allCourseInfo() {
                     +"</thead><tbody>";
                 courses.forEach(function (item) {
                     html=html+"<tr><td>"+item.courseId+"</td>"
-                    +"<td>"+item.name+"</td>"
-                    +"<td>"+item.startDate+"</td>"
-                    +"<td>"+item.credit+"</td>"
-                    +"<td>"+item.teacher+"</td></tr>";
+                        +"<td>"+item.name+"</td>"
+                        +"<td>"+item.startDate+"</td>"
+                        +"<td>"+item.credit+"</td>"
+                        +"<td>"+item.teacher+"</td></tr>";
                 });
                 html+="</tbody></table>";
                 $('#content').get(0).innerHTML=html;
@@ -118,7 +118,7 @@ function show_allCourseInfo() {
             }
         }
 
-        })
+    })
 }
 function table_init() {
     layui.use('table', function () {
