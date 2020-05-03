@@ -2,7 +2,6 @@ package controller.servlet;
 
 import controller.dao.LoginDaoImpl;
 import controller.dao.service.LoginDao;
-import model.pojo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
