@@ -2,6 +2,8 @@ package controller.dao;
 
 import controller.dao.service.LoginDao;
 import controller.utils.JDBCUtils;
+import model.pojo.Student;
+import model.pojo.Teacher;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -12,60 +14,42 @@ import java.sql.SQLException;
 /**
  * @author: Hps
  * @date: 2020/4/28 21:06
- * @description:
+ * @description: 分别实现对应的登陆 （学生登陆、教师登陆
  */
 public class LoginDaoImpl implements LoginDao {
-    private Connection conn =null;
+    private Connection connection=null;
 
-    public User login(User loginUser) {
+
+    @Override
+    public Student login(Student loginUser) {
+        connection=JDBCUtils.getConnection();
+        String sql= "select * from student where sno=? and password=?";
+        Student loginStudent=null;
         try {
-            conn=JDBCUtils.getConnection();
-            String sql = "select sno,password from student where sno=? and password=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1,loginUser.getUsername());
-            preparedStatement.setString(2,loginUser.getPassword());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,loginUser.getSno());
+            statement.setString(2,loginUser.getPassword());
+            ResultSet resultSet = statement.executeQuery();
+            //如果查询结果有内容 就将返回的数据进行重新打包
             if(resultSet.next()){
-                return new User(resultSet.getString("sno"),resultSet.getString("password"));
-            }else
-            {
-                return null;
+                 loginStudent=new Student();
+                 loginStudent.setSno(resultSet.getString("sno"));
+                loginStudent.setSname(resultSet.getString("sname"));
+                loginStudent.setBirthday(resultSet.getDate("birthday"));
+                loginStudent.setClno(resultSet.getString("clno"));
+                loginStudent.setSsex(resultSet.getString("ssex"));
+                loginStudent.setPassword(resultSet.getString("password"));
             }
 
-
-
         } catch (SQLException e) {
-            return null;
+            e.printStackTrace();
         }
+
+        return loginStudent;
     }
 
-    public Admin login(Admin loginAdmin) {
-        try {
-            conn=JDBCUtils.getConnection();
-            String sql = "select jobId,password from teacher where jobId=? and password=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1,loginAdmin.getAdmin_username());
-            preparedStatement.setString(2,loginAdmin.getAdmin_password());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                return new Admin(resultSet.getString("jobId"),resultSet.getString("password"));
-            }else
-            {
-                return null;
-            }
-
-
-
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    /*测试*/
-    @Test
-    public void testConnect(){
-        Admin login = login(new Admin("admin", "admin"));
-        System.out.println(login);
-
+    @Override
+    public Teacher login(Teacher loginAdmin) {
+        return null;
     }
 }
