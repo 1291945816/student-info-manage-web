@@ -2,10 +2,6 @@ package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
 import controller.dao.StudentDao;
-import model.pojo.Class;
-import model.pojo.Course;
-import model.pojo.Student;
-import model.pojo.StudentGrade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

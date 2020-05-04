@@ -1,9 +1,5 @@
 package controller.dao;
 
-import model.pojo.Class;
-import model.pojo.Course;
-import model.pojo.Student;
-import model.pojo.StudentGrade;
 import controller.utils.JDBCUtils;
 import org.junit.Test;
 
