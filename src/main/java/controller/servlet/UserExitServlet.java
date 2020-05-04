@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * @author: Hps
@@ -17,7 +18,14 @@ import java.io.IOException;
 public class UserExitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Enumeration<String> names = req.getAttributeNames();
+        while (names.hasMoreElements()){
+            String tp = names.nextElement();
+            req.getSession().removeAttribute(tp);
+            req.removeAttribute(tp);
+        }
 
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
     @Override
