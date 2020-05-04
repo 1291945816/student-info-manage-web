@@ -21,7 +21,7 @@
         </li>
         <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>
-        <li class="layui-nav-item"><a href="#">退出</a></li>
+        <li class="layui-nav-item"><a href="./exit">退出</a></li>
     </ul>
 
 </header>
