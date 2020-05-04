@@ -1,6 +1,8 @@
 package controller.servlet;
 
+import com.alibaba.fastjson.JSON;
 import controller.servlet.service.AdminService;
+import model.pojo.Teacher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,9 +49,15 @@ public class AdminServlet extends HttpServlet implements AdminService {
         this.doGet(req,resp);
     }
 
-
     @Override
     public void query_teacherInfo(HttpServletRequest request, HttpServletResponse response) {
-
+        Teacher login_teacher = (Teacher) request.getSession().getAttribute("teacher");
+        login_teacher.setPassword("");
+        String s = JSON.toJSONString(login_teacher);
+        try {
+            response.getWriter().write(s);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
