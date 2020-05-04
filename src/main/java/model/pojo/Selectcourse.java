@@ -3,7 +3,7 @@ package model.pojo;
 /**
  * @author: 蒙素靓
  * @date: 2020/05/04 14:37
- * @description: 提供学生选课的信息
+ * @description: 提供学生选课信息
  */
 public class Selectcourse {
     private String sno;
