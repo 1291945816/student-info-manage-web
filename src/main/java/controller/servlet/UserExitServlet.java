@@ -18,14 +18,15 @@ import java.util.Enumeration;
 public class UserExitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Enumeration<String> names = req.getAttributeNames();
+        Enumeration<String> names = req.getSession().getAttributeNames();
         while (names.hasMoreElements()){
             String tp = names.nextElement();
             req.getSession().removeAttribute(tp);
             req.removeAttribute(tp);
         }
 
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+
+        resp.sendRedirect(req.getContextPath()+"/login.jsp");
     }
 
     @Override

@@ -19,7 +19,7 @@
         </li>
         <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>
-        <li class="layui-nav-item"><a href="./exit">退出</a></li>
+        <li class="layui-nav-item"><a onclick="exit()">退出</a></li>
     </ul>
 </header>
 <!--主体内容-->
@@ -38,9 +38,11 @@
         <li class="layui-nav-item">
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
-                <dd><a href="">查看所有选课信息</a></dd>
+                <dd><a href="">查看所有课程信息</a></dd>
                 <dd><a href="">增加课程</a></dd>
                 <dd><a href="">修改课程信息</a></dd>
+                <dd><a href="">增加课程计划</a></dd>
+                <dd><a href="">修改课程计划信息</a></dd>
                 <dd><a href="">增加选课信息</a></dd>
             </dl>
         </li>
@@ -48,6 +50,7 @@
             <a href="javascript:">部门信息</a>
             <dl class="layui-nav-child">
                 <dd><a href="">增加部门</a></dd>
+                <dd><a href="">删除部门</a></dd>
                 <dd><a href="">查看部门</a></dd>
             </dl>
         </li>
