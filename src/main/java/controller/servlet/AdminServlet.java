@@ -47,8 +47,9 @@ public class AdminServlet extends HttpServlet implements AdminService {
         this.doGet(req,resp);
     }
 
+
     @Override
-    public void query_TeacherInfo(HttpServletRequest request, HttpServletResponse response) {
+    public void query_teacherInfo(HttpServletRequest request, HttpServletResponse response) {
 
     }
 }

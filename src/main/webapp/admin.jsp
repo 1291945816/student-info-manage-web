@@ -31,7 +31,7 @@
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:">用户信息</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:">查看个人信息</a></dd>
+                <dd><a onclick="show_info()">查看个人信息</a></dd>
                 <dd><a href="javascript:">修改个人信息</a></dd>
             </dl>
         </li>
@@ -71,6 +71,6 @@
     </div>
 </main>
 </body>
-<script src="lib/js/student.js" ></script>
+<script src="lib/js/admin.js" ></script>
 </html>
 
