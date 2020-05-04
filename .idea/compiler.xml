@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ink.kilig.student.info" />
         <module name="student-info-manage-web" />
+        <module name="ink.kilig.student.info" />
       </profile>
     </annotationProcessing>
   </component>
