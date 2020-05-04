@@ -33,7 +33,7 @@ function show_info() {
                 + "<tr>" + "<td>name: </td>" + "<td>" + info.tname + "</td>" + "</tr>"
                 + "<tr>" + "<td>sex: </td>" + "<td>" + info.tsex+ "</td>" + "</tr>"
                 + "<tr>" + "<td>birthday: </td>" + "<td>" + info.birthday + "</td>" + "</tr>"
-                + "<tr>" + "<td>class: </td>" + "<td>" + info.president + "</td>" + "</tr>"
+                + "<tr>" + "<td>job: </td>" + "<td>" + info.president + "</td>" + "</tr>"
                 + "<tr>" + "<td>department: </td>" + "<td>" + info.dno + "</td>" + "</tr></tbody></table>";
             $('#content').get(0).innerHTML=html;
 
