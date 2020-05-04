@@ -59,7 +59,7 @@ To change this template use File | Settings | File Templates.
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <img id="checkcode" alt="加载失败" src="/test/checkcode">
+                    <img id="checkcode" alt="加载失败" src="./checkcode">
                     <a href="login.jsp" style="color: white">图片看不清?点击试试看</a>
                 </div>
             </div>
