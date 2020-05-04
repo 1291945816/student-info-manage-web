@@ -16,11 +16,11 @@ public class DatabaseConnectTest {
     public static void main(String[] args) {
         try {
             Connection conn = JDBCUtils.getConnection();
-            String sql = "select  * from user";
+            String sql = "select  * from teacher";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
-                System.out.println(resultSet.getString("username")+" "+resultSet.getString("password"));
+                System.out.println(resultSet.getString("tno")+" "+resultSet.getString("password"));
 
             }
 
