@@ -50,6 +50,30 @@ public class LoginDaoImpl implements LoginDao {
 
     @Override
     public Teacher login(Teacher loginAdmin) {
-        return null;
+        connection=JDBCUtils.getConnection();
+        String sql= "select * from teacher where tno=? and password=?";
+        Teacher loginTeacher=null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,loginAdmin.getTno());
+            statement.setString(2,loginAdmin.getPassword());
+            ResultSet resultSet = statement.executeQuery();
+            //如果查询结果有内容 就将返回的数据进行重新打包
+            if(resultSet.next()){
+                loginTeacher=new Teacher();
+                loginTeacher.setTno(resultSet.getString("tno"));
+                loginTeacher.setTname(resultSet.getString("tname"));
+                loginTeacher.setPresident(resultSet.getString("president"));
+                loginTeacher.setBirthday(resultSet.getDate("birthday"));
+                loginTeacher.setTsex(resultSet.getString("tsex"));
+                loginTeacher.setDno(resultSet.getString("dno"));
+                loginTeacher.setPassword(resultSet.getString("password"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return loginTeacher;
     }
 }
