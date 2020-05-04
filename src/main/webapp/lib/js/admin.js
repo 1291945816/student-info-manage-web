@@ -1,3 +1,15 @@
+layui.use('element', function(){
+    let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+    //监听导航点击
+    element.on('nav(demo)', function(elem){
+
+        layui.use('layer',function () {
+            layer.msg(elem.text());
+        })
+    });
+});
+
 function exit() {
     layui.use('layer',function (){
         layer.confirm('你确定现在就要退出吗?', {title: '提示',icon: 3,scrollbar: false},function(index){

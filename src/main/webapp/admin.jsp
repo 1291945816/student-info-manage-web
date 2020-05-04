@@ -8,6 +8,7 @@
     <script src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
     <link rel="icon" href="./lib/images/icon.ico" type="image/icon">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/css/admin.css">
 
 </head>
 <body>
@@ -27,7 +28,7 @@
 
 <main>
 <!--  垂直导航栏-->
-    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+    <ul class="layui-nav layui-nav-tree layui-inline layui-nav-tree layui-nav-side" lay-filter="demo" style="margin-right: 10px;">
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:">用户信息</a>
             <dl class="layui-nav-child">
@@ -71,6 +72,6 @@
     </div>
 </main>
 </body>
-<script src="lib/js/admin.js" ></script>
+<script src="./lib/js/admin.js" ></script>
 </html>
 
