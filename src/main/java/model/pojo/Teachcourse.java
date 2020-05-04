@@ -8,17 +8,7 @@ package model.pojo;
 public class Teachcourse {
     private String cno;
     private String tno;
-    private int cnum;
-
-    public Teachcourse(String cno, String tno, int cnum){
-        this.cno = cno;
-        this.tno = tno;
-        this.cnum = cnum;
-    }
-
-    public Teachcourse(){
-
-    }
+    private Integer cnum;
 
     public String getCno() {
         return cno;
@@ -36,11 +26,11 @@ public class Teachcourse {
         this.tno = tno;
     }
 
-    public int getCnum() {
+    public Integer getCnum() {
         return cnum;
     }
 
-    public void setCnum(int cnum) {
+    public void setCnum(Integer cnum) {
         this.cnum = cnum;
     }
 

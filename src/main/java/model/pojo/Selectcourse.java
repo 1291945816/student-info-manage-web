@@ -8,21 +8,9 @@ package model.pojo;
 public class Selectcourse {
     private String sno;
     private String cno;
-    private double daygrade;
-    private double examgrade;
-    private double totalgrade;
-
-    public Selectcourse(String sno, String cno, double daygrade, double examgrade, double totalgrade){
-        this.sno = sno;
-        this.cno = cno;
-        this.daygrade = daygrade;
-        this.examgrade = examgrade;
-        this.totalgrade = totalgrade;
-    }
-
-    public Selectcourse(){
-
-    }
+    private Double daygrade;
+    private Double examgrade;
+    private Double totalgrade;
 
     public String getSno() {
         return sno;
@@ -40,27 +28,27 @@ public class Selectcourse {
         this.cno = cno;
     }
 
-    public double getDaygrade() {
+    public Double getDaygrade() {
         return daygrade;
     }
 
-    public void setDaygrade(double daygrade) {
+    public void setDaygrade(Double daygrade) {
         this.daygrade = daygrade;
     }
 
-    public double getExamgrade() {
+    public Double getExamgrade() {
         return examgrade;
     }
 
-    public void setExamgrade(double examgrade) {
+    public void setExamgrade(Double examgrade) {
         this.examgrade = examgrade;
     }
 
-    public double getTotalgrade() {
+    public Double getTotalgrade() {
         return totalgrade;
     }
 
-    public void setTotalgrade(double totalgrade) {
+    public void setTotalgrade(Double totalgrade) {
         this.totalgrade = totalgrade;
     }
 
