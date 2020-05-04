@@ -8,9 +8,9 @@ package model.pojo;
 public class Selectcourse {
     private String sno;
     private String cno;
-    private double daygrade;
-    private double examgrade;
-    private double totalgrade;
+    private Double daygrade;
+    private Double examgrade;
+    private Double totalgrade;
 
     public Selectcourse(String sno, String cno, double daygrade, double examgrade, double totalgrade){
         this.sno = sno;

@@ -8,7 +8,7 @@ package model.pojo;
 public class Teachcourse {
     private String cno;
     private String tno;
-    private int cnum;
+    private Integer cnum;
 
     public Teachcourse(String cno, String tno, int cnum){
         this.cno = cno;

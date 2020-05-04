@@ -8,7 +8,7 @@ package model.pojo;
 public class Course {
     private String ccode;
     private String cname;
-    private double credit;
+    private Double credit;
 
     public Course(String ccode, String cname, double credit){
         this.ccode = ccode;
