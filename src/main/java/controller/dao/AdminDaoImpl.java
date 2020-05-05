@@ -28,6 +28,8 @@ public class AdminDaoImpl implements AdminDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return size;
     }
@@ -80,11 +82,38 @@ public class AdminDaoImpl implements AdminDao {
         return null;
     }
 
+    @Override
+    public boolean delete_courseplan(String cno) {
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "delete from courseplan where cno=?";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,cno);
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+          flag=false;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean update_courseplanValue(Courseplan courseplan) {
+        return false;
+    }
+
     @Test
     public void testDate(){
             AdminDao adminDao=new AdminDaoImpl();
-        List<Courseplan> list = adminDao.query_courseplansInfo("1", "20");
-        System.out.println(new AdminDaoImpl().get_Nums("courseplan"));
+        boolean flag = adminDao.delete_courseplan("1");
+        System.out.println(flag);
 
 
     }

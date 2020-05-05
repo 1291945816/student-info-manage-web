@@ -31,4 +31,15 @@ public interface AdminDao {
      * @return
      */
     public List<Course> query_coursesInfo(String pageCode, String limit);
+
+
+    public boolean delete_courseplan(String cno);
+
+    /**
+     * 用于修改信息，如果修改成功则返回true  修改失败则返回 false
+     * @param courseplan
+     * @return
+     */
+    public boolean update_courseplanValue(Courseplan courseplan);
+
 }

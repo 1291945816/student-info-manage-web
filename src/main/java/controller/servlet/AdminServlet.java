@@ -86,7 +86,46 @@ public class AdminServlet extends HttpServlet implements AdminService {
         String s = JSON.toJSONString(map);
         response.getWriter().write(s);
 
+    }
 
+    @Override
+    public void update_deleteCourseplan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String cno=(String)request.getParameter("cno");
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.delete_courseplan(cno);
+        Map<String ,String> map=new HashMap<>();
+        if(b){
+            map.put("code","200"); //删除成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //删除失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
+    }
+
+    /**
+     *  用于查询课程信息 返回的格式参见查询计划方法的操作
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    public void query_courseDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    /**
+     * 用于处理数据的更新 参见 删除的操作 根据是否修改成功返回对应的状态码
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    public void update_updateCourseplan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

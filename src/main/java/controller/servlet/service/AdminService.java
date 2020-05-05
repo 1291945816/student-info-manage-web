@@ -13,5 +13,8 @@ import java.io.IOException;
 public interface AdminService {
     public void query_teacherInfo(HttpServletRequest request,HttpServletResponse response);
     public void query_courseInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException;
+    public void update_deleteCourseplan(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
+    public void query_courseDetail(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
+    public void update_updateCourseplan(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
 
 }

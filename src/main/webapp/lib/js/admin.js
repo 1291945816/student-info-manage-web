@@ -42,7 +42,12 @@ function show_info() {
 }
 
 function show_courseInfo() {
-   let  html_table1="<table id='table1' lay-filter='test'></table>"
+
+
+   let  html_table1="<h1 style='text-align: center'>课程计划</h1>"
+       +"<table id='table1' lay-filter='test'></table>"
+      +"<hr /><h1 style='text-align: center'>课程</h1>"
+        +"<table id='table2' lay-filter='test2'></table>";
     $('#content').get(0).innerHTML=html_table1;
     layui.use('table',function () {
         var table=layui.table;
@@ -53,16 +58,63 @@ function show_courseInfo() {
             limits: [5,10,15,20]
             ,height: 315,
             url: './adminservlet',
+            cellMinWidth:200,
             cols: [[ //表头
-                {type: 'checkbox', fixed: 'left'},
-                {field: 'cno', title: '课号', width:200, sort: true, fixed: 'left'}
-                ,{field: 'ccode', title: '课程代码', width:200}
-                ,{field: 'startdate', title: '授课时间', width:200}
+                {field: 'cno' ,edit: 'text',title: '课号', width:200, sort: true, fixed: 'left'}
+                ,{field: 'ccode',edit: 'text',title: '课程代码', width:200}
+                ,{field: 'startdate',edit: 'text', title: '授课时间', width:200},
+                {fixed: 'right',title: '操作', width: 200, align:'center', toolbar: '#con'}
             ]],
             where: {'action': 'query_courseInfo'}
 
         })
+        table.on('tool(test)',function (obj) {
+            const data_ = obj.data
+                , layEvent = obj.event; //获取操作、数据
+            if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    layer.close(index);
+                    $.ajax({
+                        type: 'post',
+                        data: data_,
+                        url: './adminservlet?action=update_deleteCourseplan',
+                        dataType: 'json',
+                        success: function (status) {
+                            if(status.code === "200"){
+                                layui.use('layer',function () {
+                                    layer.msg('删除成功', {icon: 1});
+                                })
+                                obj.del(); //删除对应行（tr）的DOM结构
+                            }else {
+                                layui.use('layer',function () {
+                                    layer.msg('删除失败，该课号已在开课', {icon: 0});
+                                })
+                            }
+                        }
+                    })
 
-    })
+
+
+
+
+                });
+            }else if(layEvent === 'store'){
+
+
+
+
+            }
+
+        })
+
+
+
+    });
+
+
+
+
+
+
 
 }

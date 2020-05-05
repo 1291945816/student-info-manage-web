@@ -25,7 +25,7 @@ function show_info() {
                 + "<tr>" + "<td>id: </td>" + "<td>" + info.sno + "</td>" + "</tr>"
                 + "<tr>" + "<td>sex: </td>" + "<td>" + info.ssex + "</td>" + "</tr>"
                 + "<tr>" + "<td>birthday: </td>" + "<td>" + info.birthday + "</td>" + "</tr>"
-                + "<tr>" + "<td>department: </td>" + "<td>" + info.clno + "</td>" + "</tr></tbody></table>";
+                + "<tr>" + "<td>class: </td>" + "<td>" + info.clno + "</td>" + "</tr></tbody></table>";
             $('#content').get(0).innerHTML=html;
 
 

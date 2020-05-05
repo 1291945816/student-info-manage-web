@@ -9,7 +9,7 @@ To change this template use File | Settings | File Templates.
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>学生信息管理系统</title>
+    <title>教务系统</title>
     <meta name="author" content="kilig">
     <link rel="stylesheet" type="text/css" href="./lib/layui/layui-v2.5.6/layui/css/layui.css">
     <script src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
@@ -24,7 +24,7 @@ To change this template use File | Settings | File Templates.
 <header>
 <ul class="layui-nav layui-bg-green" style="text-align: right; font-size: 20px">
     <li class="layui-nav-item" style="right: 75em" >
-        <a style="font-size: 30px;color: aliceblue">学生信息管理系统</a>
+        <a style="font-size: 30px;color: aliceblue">教务系统</a>
     </li>
     <li class="layui-nav-item"><a href="#">首页</a></li>
     <li class="layui-nav-item"><a href="login.jsp">登陆</a></li>

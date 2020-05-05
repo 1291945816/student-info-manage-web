@@ -9,6 +9,10 @@
     <link rel="icon" href="./lib/images/icon.ico" type="image/icon">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="./lib/css/admin.css">
+    <script type="text/html" id="con">
+        <a class="layui-btn layui-btn-xs" lay-event="store">保存</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
 
 </head>
 <body>
@@ -73,5 +77,6 @@
 </main>
 </body>
 <script src="./lib/js/admin.js" ></script>
+
 </html>
 
