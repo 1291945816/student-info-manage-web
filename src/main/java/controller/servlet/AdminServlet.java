@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: Hps
+ * @author: Hps, CAgAG
  * @date: 2020/5/4 22:13
  * @description:
  */
@@ -173,7 +173,18 @@ public class AdminServlet extends HttpServlet implements AdminService {
      */
     @Override
     public void update_deleteCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.delete_course((String)request.getParameter("ccode"));
 
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
     }
 
     /**
@@ -185,6 +196,22 @@ public class AdminServlet extends HttpServlet implements AdminService {
      */
     @Override
     public void update_updateCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Course cp = new Course();
+        cp.setCcode((String)request.getParameter("ccode"));
+        cp.setCname((String)request.getParameter("cname"));
+        cp.setCredit(Double.parseDouble(request.getParameter("credit")));
 
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.update_courseValue(cp);
+
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
     }
 }
