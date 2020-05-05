@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import controller.dao.AdminDaoImpl;
 import controller.dao.service.AdminDao;
 import controller.servlet.service.AdminService;
+import model.pojo.Course;
 import model.pojo.Courseplan;
 import model.pojo.Teacher;
 
@@ -72,7 +73,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
         String page = request.getParameter("page");
         String limit = request.getParameter("limit");
         AdminDao adminDao = new AdminDaoImpl();
-        Map<String,Object> map=new HashMap<>();
+        Map<String,Object> map=new HashMap<String, Object>();
         List<Courseplan> list = adminDao.query_courseplansInfo(page, limit);
         if(list!=null){
             map.put("code","0");
@@ -94,7 +95,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
         String cno=(String)request.getParameter("cno");
         AdminDao adminDao=new AdminDaoImpl();
         boolean b = adminDao.delete_courseplan(cno);
-        Map<String ,String> map=new HashMap<>();
+        Map<String ,String> map=new HashMap<String, String>();
         if(b){
             map.put("code","200"); //删除成功则返回200
 
@@ -114,7 +115,22 @@ public class AdminServlet extends HttpServlet implements AdminService {
      */
     @Override
     public void query_courseDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
+        AdminDao adminDao = new AdminDaoImpl();
+        Map<String,Object> map=new HashMap<String, Object>();
+        List<Course> list = adminDao.query_coursesInfo(page, limit);
+        if(list!=null){
+            map.put("code","0");
+            map.put("msg","");
+            map.put("count",adminDao.get_Nums("course"));
+            map.put("data",list);
+        }else
+        {
+            map.put("code","-1");
+        }
+        String s = JSON.toJSONString(map);
+        response.getWriter().write(s);
     }
 
     /**
@@ -126,6 +142,22 @@ public class AdminServlet extends HttpServlet implements AdminService {
      */
     @Override
     public void update_updateCourseplan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Courseplan cp = new Courseplan();
+        cp.setCno((String)request.getParameter("cno"));
+        cp.setCcode((String)request.getParameter("ccode"));
+        cp.setStartdate((String)request.getParameter("startdate"));
 
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.update_courseplanValue(cp);
+
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
     }
 }

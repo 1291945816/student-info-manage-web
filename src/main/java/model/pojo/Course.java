@@ -16,6 +16,10 @@ public class Course {
         this.credit = credit;
     }
 
+    public Course() {
+
+    }
+
     public String getCcode() {
         return ccode;
     }

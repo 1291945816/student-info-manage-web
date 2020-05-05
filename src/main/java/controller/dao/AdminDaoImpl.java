@@ -58,7 +58,7 @@ public class AdminDaoImpl implements AdminDao {
             if(resultSet.getRow() > 0)
             {
                 resultSet.beforeFirst();
-                list=new ArrayList<>();
+                list=new ArrayList<Courseplan>();
                 while(resultSet.next()){
                     courseplan=new Courseplan();
                     courseplan.setCcode(resultSet.getString("ccode"));
@@ -79,7 +79,44 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public List<Course> query_coursesInfo(String pageCode, String limit) {
-        return null;
+        connection= JDBCUtils.getConnection();
+        List<Course> list=null;
+        Course courseplan=null;
+        String sql="select * from course limit ?,?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int page=Integer.valueOf(pageCode);
+            int limit_i=Integer.valueOf(limit);
+
+            //展开分页查询，并且起始页由参数决定
+            statement.setInt(1,(page-1)*limit_i);
+            statement.setInt(2,limit_i);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.last();
+
+            if(resultSet.getRow() > 0)
+            {
+                resultSet.beforeFirst();
+                list=new ArrayList<Course>();
+                while(resultSet.next()){
+                    courseplan=new Course();
+                    courseplan.setCcode(resultSet.getString("ccode"));
+                    courseplan.setCname(resultSet.getString("cname"));
+                    courseplan.setCredit(resultSet.getDouble("credit"));
+                    list.add(courseplan);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+
+
+        return list;
+
     }
 
     @Override
@@ -106,17 +143,39 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public boolean update_courseplanValue(Courseplan courseplan) {
-        return false;
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "update courseplan SET cno=?, ccode=?, startdate=? where cno=?";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,courseplan.getCno());
+            statement.setString(2,courseplan.getCcode());
+            statement.setString(3,courseplan.getStartdate());
+            statement.setString(4,courseplan.getCno());
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            flag=false;
+        }
+        return flag;
     }
 
     @Test
     public void testDate(){
-            AdminDao adminDao=new AdminDaoImpl();
-        boolean flag = adminDao.delete_courseplan("1");
+        AdminDao adminDao=new AdminDaoImpl();
+        Courseplan cp = new Courseplan();
+        cp.setCno("110");
+        cp.setCcode("AX1001");
+        cp.setStartdate("2020-2021-1");
+
+        boolean flag = adminDao.update_courseplanValue(cp);
         System.out.println(flag);
 
-
     }
-
-
 }
