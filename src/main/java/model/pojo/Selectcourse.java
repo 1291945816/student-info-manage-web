@@ -3,7 +3,7 @@ package model.pojo;
 /**
  * @author: 蒙素靓
  * @date: 2020/05/04 14:37
- * @description: 提供学生选课的信息
+ * @description: 提供学生选课信息
  */
 public class Selectcourse {
     private String sno;
@@ -11,6 +11,18 @@ public class Selectcourse {
     private Double daygrade;
     private Double examgrade;
     private Double totalgrade;
+
+    public Selectcourse(String sno, String cno, double daygrade, double examgrade, double totalgrade){
+        this.sno = sno;
+        this.cno = cno;
+        this.daygrade = daygrade;
+        this.examgrade = examgrade;
+        this.totalgrade = totalgrade;
+    }
+
+    public Selectcourse(){
+
+    }
 
     public String getSno() {
         return sno;
@@ -28,27 +40,27 @@ public class Selectcourse {
         this.cno = cno;
     }
 
-    public Double getDaygrade() {
+    public double getDaygrade() {
         return daygrade;
     }
 
-    public void setDaygrade(Double daygrade) {
+    public void setDaygrade(double daygrade) {
         this.daygrade = daygrade;
     }
 
-    public Double getExamgrade() {
+    public double getExamgrade() {
         return examgrade;
     }
 
-    public void setExamgrade(Double examgrade) {
+    public void setExamgrade(double examgrade) {
         this.examgrade = examgrade;
     }
 
-    public Double getTotalgrade() {
+    public double getTotalgrade() {
         return totalgrade;
     }
 
-    public void setTotalgrade(Double totalgrade) {
+    public void setTotalgrade(double totalgrade) {
         this.totalgrade = totalgrade;
     }
 
