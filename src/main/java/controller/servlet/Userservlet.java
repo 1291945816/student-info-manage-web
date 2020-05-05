@@ -2,6 +2,7 @@ package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
 import controller.servlet.service.UserService;
+import model.pojo.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,7 +68,14 @@ public class Userservlet extends HttpServlet implements UserService {
 
     @Override
     public void query_studentInfo(HttpServletRequest request, HttpServletResponse response) {
-
+        Student login_student = (Student)  request.getSession().getAttribute("student");
+        login_student.setPassword("");
+        String s = JSON.toJSONString(login_student);
+        try {
+            response.getWriter().write(s);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 }
