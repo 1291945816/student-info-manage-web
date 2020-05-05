@@ -16,5 +16,7 @@ public interface AdminService {
     public void update_deleteCourseplan(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
     public void query_courseDetail(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
     public void update_updateCourseplan(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
+    public void update_deleteCourse(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
+    public void update_updateCourse(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
 
 }

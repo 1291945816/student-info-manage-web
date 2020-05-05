@@ -160,4 +160,29 @@ public class AdminServlet extends HttpServlet implements AdminService {
         }
         response.getWriter().write(JSON.toJSONString(map));
     }
+
+
+    /**
+     * 根据从参数获取到的课程代码 从而删除该课程，如果删除成功则返回200 否则 500
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    public void update_deleteCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    /**
+     * 根据给定的 课程代码 修改课程名称、课程学分信息 修改成功返回 200 否则返回 500
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    public void update_updateCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 }

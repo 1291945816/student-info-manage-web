@@ -43,12 +43,11 @@
         <li class="layui-nav-item">
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
-                <dd><a onclick="show_courseInfo()">查看所有课程信息</a></dd>
+                <dd><a onclick="show_courseInfo()">课程信息&课程计划</a></dd>
                 <dd><a href="">增加课程</a></dd>
-                <dd><a href="">修改课程信息</a></dd>
                 <dd><a href="">增加课程计划</a></dd>
-                <dd><a href="">修改课程计划信息</a></dd>
-                <dd><a href="">增加选课信息</a></dd>
+                <dd><a href="">选课信息</a></dd>
+
             </dl>
         </li>
         <li class="layui-nav-item">

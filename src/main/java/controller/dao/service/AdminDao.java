@@ -35,6 +35,21 @@ public interface AdminDao {
 
     public boolean delete_courseplan(String cno);
 
+
+    /**
+     * 删除课程
+     * @param ccode
+     * @return
+     */
+    public boolean delete_course(String ccode);
+
+    /**
+     * 更新课程的值
+     * @param course
+     * @return
+     */
+    public boolean update_courseValue(Course course);
+
     /**
      * 用于修改信息，如果修改成功则返回true  修改失败则返回 false
      * @param courseplan

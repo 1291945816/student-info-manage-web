@@ -142,6 +142,16 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
+    public boolean delete_course(String ccode) {
+        return false;
+    }
+
+    @Override
+    public boolean update_courseValue(Course course) {
+        return false;
+    }
+
+    @Override
     public boolean update_courseplanValue(Courseplan courseplan) {
         boolean flag=false;
         connection=JDBCUtils.getConnection();

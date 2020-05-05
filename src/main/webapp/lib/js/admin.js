@@ -51,6 +51,8 @@ function show_courseInfo() {
     $('#content').get(0).innerHTML=html_table1;
     layui.use('table',function () {
         var table=layui.table;
+
+
         table.render({
             elem: '#table1'
             ,page: true,
@@ -60,14 +62,88 @@ function show_courseInfo() {
             url: './adminservlet',
             cellMinWidth:200,
             cols: [[ //表头
-                {field: 'cno' ,edit: 'text',title: '课号', width:200, sort: true, fixed: 'left'}
+                {field: 'cno' ,title: '课号', width:200, sort: true, fixed: 'left'}
                 ,{field: 'ccode',edit: 'text',title: '课程代码', width:200}
                 ,{field: 'startdate',edit: 'text', title: '授课时间', width:200},
                 {fixed: 'right',title: '操作', width: 200, align:'center', toolbar: '#con'}
             ]],
             where: {'action': 'query_courseInfo'}
 
-        })
+        });
+
+
+
+
+        table.render({
+            elem: '#table2'
+            ,page: true,
+            limit: 5,
+            limits: [5,10,15,20]
+            ,height: 315,
+            url: './adminservlet',
+            cellMinWidth:200,
+            cols: [[ //表头
+                {field: 'ccode' ,title: '课程代码', width:200, sort: true, fixed: 'left'}
+                ,{field: 'cname',edit: 'text',title: '课程名称', width:200}
+                ,{field: 'credit',edit: 'text', title: '学分', width:200},
+                {fixed: 'right',title: '操作', width: 200, align:'center', toolbar: '#con'}
+            ]],
+            where: {'action': 'query_courseDetail'}
+
+        });
+        table.on('tool(test2)',function (obj) {
+            const data_ = obj.data
+                , layEvent = obj.event; //获取操作、数据
+            if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    layer.close(index);
+                    $.ajax({
+                        type: 'post',
+                        data: data_,
+                        url: './adminservlet?action=update_deleteCourse',
+                        dataType: 'json',
+                        success: function (status) {
+                            if(status.code === "200"){
+                                layui.use('layer',function () {
+                                    layer.msg('删除成功', {icon: 1});
+                                })
+                                obj.del(); //删除对应行（tr）的DOM结构
+                            }else {
+                                layui.use('layer',function () {
+                                    layer.msg('删除失败，该课程已归入课程计划', {icon: 0});
+                                })
+                            }
+                        }
+                    })
+
+                });
+            }else if(layEvent === 'store'){
+                $.ajax({
+                    type: 'post',
+                    data: data_,
+                    url: './adminservlet?action=update_updateCourse',
+                    dataType: 'json',
+                    success: function (status) {
+                        if(status.code === "200"){
+                            layui.use('layer',function () {
+                                layer.msg('修改成功', {icon: 1});
+                            });
+                        }else {
+                            layui.use('layer',function () {
+                                layer.msg('修改失败', {icon: 0});
+                            })
+                        }
+                    }
+                })
+            }
+        });
+
+
+
+
+
+
+
         table.on('tool(test)',function (obj) {
             const data_ = obj.data
                 , layEvent = obj.event; //获取操作、数据
@@ -93,25 +169,32 @@ function show_courseInfo() {
                         }
                     })
 
-
-
-
-
                 });
             }else if(layEvent === 'store'){
-
-
-
-
+                $.ajax({
+                    type: 'post',
+                    data: data_,
+                    url: './adminservlet?action=update_updateCourseplan',
+                    dataType: 'json',
+                    success: function (status) {
+                        if(status.code === "200"){
+                            layui.use('layer',function () {
+                                layer.msg('修改成功', {icon: 1});
+                            });
+                        }else {
+                            layui.use('layer',function () {
+                                layer.msg('修改失败，该课程不存在/请增加课程', {icon: 0});
+                            })
+                        }
+                    }
+                })
             }
+        });
 
-        })
 
 
 
     });
-
-
 
 
 
