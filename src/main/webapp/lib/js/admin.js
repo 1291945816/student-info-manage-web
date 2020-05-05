@@ -37,9 +37,32 @@ function show_info() {
                 + "<tr>" + "<td>department: </td>" + "<td>" + info.dno + "</td>" + "</tr></tbody></table>";
             $('#content').get(0).innerHTML=html;
 
-
-
-
         }
     })
+}
+
+function show_courseInfo() {
+   let  html_table1="<table id='table1' lay-filter='test'></table>"
+    $('#content').get(0).innerHTML=html_table1;
+    layui.use('table',function () {
+        var table=layui.table;
+        table.render({
+            elem: '#table1'
+            ,page: true,
+            limit: 5,
+            limits: [5,10,15,20]
+            ,height: 315,
+            url: './adminservlet',
+            cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'},
+                {field: 'cno', title: '课号', width:200, sort: true, fixed: 'left'}
+                ,{field: 'ccode', title: '课程代码', width:200}
+                ,{field: 'startdate', title: '授课时间', width:200}
+            ]],
+            where: {'action': 'query_courseInfo'}
+
+        })
+
+    })
+
 }

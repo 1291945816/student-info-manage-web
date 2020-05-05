@@ -1,7 +1,10 @@
 package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
+import controller.dao.AdminDaoImpl;
+import controller.dao.service.AdminDao;
 import controller.servlet.service.AdminService;
+import model.pojo.Courseplan;
 import model.pojo.Teacher;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Hps
@@ -59,5 +65,28 @@ public class AdminServlet extends HttpServlet implements AdminService {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void query_courseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
+        AdminDao adminDao = new AdminDaoImpl();
+        Map<String,Object> map=new HashMap<>();
+        List<Courseplan> list = adminDao.query_courseplansInfo(page, limit);
+        if(list!=null){
+            map.put("code","0");
+            map.put("msg","");
+            map.put("count",adminDao.get_Nums("courseplan"));
+            map.put("data",list);
+        }else
+        {
+            map.put("code","-1");
+        }
+        String s = JSON.toJSONString(map);
+        response.getWriter().write(s);
+
+
+
     }
 }

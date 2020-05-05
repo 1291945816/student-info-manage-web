@@ -24,8 +24,6 @@ public class UserExitServlet extends HttpServlet {
             req.getSession().removeAttribute(tp);
             req.removeAttribute(tp);
         }
-
-
         resp.sendRedirect(req.getContextPath()+"/login.jsp");
     }
 

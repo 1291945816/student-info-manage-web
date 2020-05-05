@@ -42,28 +42,29 @@ function show_classInfo() {
         url: "/test/userservlet?action=query_classInfo",
         data: '',
         success: function (classInfo) {
-            let class_info = classInfo.Class;
+            let class_info = classInfo.class_;
             let students_info = classInfo.students;
+            let teacher=classInfo.teacher;
             let html1 = "<h1 style='text-align: center'>班级信息</h1>"
                 + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                 + "<tbody style='font-size: 30px'>"
-                + "<tr>" + "<td>classId: </td>" + "<td>" + class_info.id + "</td>" + "</tr>"
-                + "<tr>" + "<td>classTeacher: </td>" + "<td>" + class_info.classTeacher + "</td>" + "</tr></tbody></table><hr />";
+                + "<tr>" + "<td>classId: </td>" + "<td>" + class_info.clno + "</td>" + "</tr>"
+                + "<tr>" + "<td>department: </td>" + "<td>" + class_info.dno + "</td>" + "</tr>"
+                + "<tr>" + "<td>classTeacher: </td>" + "<td>" + teacher + "</td>" + "</tr></tbody></table><hr />";
             let html2 = "<h1 style='text-align: center'>班级成员</h1>"
                 + "<table  lay-filter='data_parse'  >"
                 +"<thead>"
                 + "<tr>" +
                 "<th lay-data=\"{field:'id',width: 300,sort: true}\" >" +"id </th>"
                 +"<th lay-data=\"{field:'name',width: 200}\">" +"name</th>"
-                +"<th lay-data=\"{field:'department',width: 890}\">" +"department </th>"
+                +"<th lay-data=\"{field:'name',width: 200}\">" +"sex</th>"
                 +"</tr>"
                 +"</thead><tbody>";
             students_info.forEach(function (student_info) {
-                let id = student_info.id;
+                let id = student_info.sno;
                 html2=html2
                     +"<tr><td>"+id+"</td>"
-                    +"<td>"+student_info.name+"</td>"
-                    +"<td>"+student_info.department+"</td>"
+                    +"<td>"+student_info.sname+"</td>"
                     + "</tr>";
             });
             html2=html2+"</tbody></table>";
