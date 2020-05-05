@@ -27,7 +27,7 @@ public interface AdminDao {
     /**
      * 通过给定的页码，返回指定页码开始的数据总数
      * @param pageCode 页码 从1开始
-     * @param limit 页数
+     * @param limit 每页的数据
      * @return
      */
     public List<Course> query_coursesInfo(String pageCode, String limit);
