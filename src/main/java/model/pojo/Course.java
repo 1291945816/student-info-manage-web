@@ -10,14 +10,10 @@ public class Course {
     private String cname;
     private Double credit;
 
-    public Course(String ccode, String cname, double credit){
+    public Course(String ccode, String cname, Double credit){
         this.ccode = ccode;
         this.cname = cname;
         this.credit = credit;
-    }
-
-    public Course(){
-
     }
 
     public String getCcode() {
@@ -36,17 +32,16 @@ public class Course {
         this.cname = cname;
     }
 
-    public double getCredit() {
+    public Double getCredit() {
         return credit;
     }
 
-    public void setCredit(double credit) {
+    public void setCredit(Double credit) {
         this.credit = credit;
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Course{" +
                 "ccode='" + ccode + '\'' +
                 ", cname='" + cname + '\'' +

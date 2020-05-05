@@ -21,7 +21,7 @@
         </li>
         <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>
-        <li class="layui-nav-item"><a href="#">退出</a></li>
+        <li class="layui-nav-item"><a name='exit_f' onclick="exit()">退出</a></li>
     </ul>
 
 </header>
@@ -38,12 +38,14 @@
                 <dd><a onclick="show_info()">查看个人信息</a></dd>
                 <dd><a href="javascript:">修改个人信息</a></dd>
                 <dd><a onclick="show_classInfo()">查看班级信息</a></dd>
+                <dd><a onclick="show_classInfo()">查看部门信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="show_allCourseInfo()">查看已选课程</a></dd>
+                <dd><a onclick="show_allCourseInfo()">选择课程</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a  onclick="show_grade()" >查看成绩</a></li>

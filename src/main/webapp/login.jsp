@@ -54,12 +54,12 @@ To change this template use File | Settings | File Templates.
             <div class="layui-form-item">
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">验证码</label>
                 <div class="layui-input-block">
-                    <input type="text" name="checkedCode" required lay-verify="required" placeholder="请输入验证码（不区分大小写）" autocomplete="off"  style="width:200px;" class="layui-input">
+                    <input type="text" name="checkedCode" required lay-verify="required" placeholder="请输入结果" autocomplete="off"  style="width:200px;" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <img id="checkcode" alt="加载失败" src="/test/checkcode">
+                    <img id="checkcode" alt="加载失败" src="./checkcode">
                     <a href="login.jsp" style="color: white">图片看不清?点击试试看</a>
                 </div>
             </div>

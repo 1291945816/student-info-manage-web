@@ -1,5 +1,7 @@
 package controller.utils;
 
+import org.junit.Test;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -36,5 +38,16 @@ public class MD5Utils {
         return stringBuilder.toString();
 
     }
+    @Test
+    public void test(){
+        String md5String = MD5Utils.getMD5String("123456");
+        System.out.println(md5String);
+
+
+    }
+
+
+
+
 
 }
