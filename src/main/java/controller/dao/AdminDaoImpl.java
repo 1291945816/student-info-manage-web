@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: Hps
+ * @author: Hps, CAgAG
  * @date: 2020/5/5 8:33
  * @description:
  */
@@ -143,12 +143,49 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public boolean delete_course(String ccode) {
-        return false;
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "delete from course where ccode=?";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,ccode);
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            flag=false;
+        }
+        return flag;
     }
 
     @Override
     public boolean update_courseValue(Course course) {
-        return false;
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "update course SET ccode=?, cname=?, credit=? where ccode=?";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,course.getCcode());
+            statement.setString(2,course.getCname());
+            statement.setDouble(3,course.getCredit());
+            statement.setString(4,course.getCcode());
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            flag=false;
+        }
+        return flag;
     }
 
     @Override
