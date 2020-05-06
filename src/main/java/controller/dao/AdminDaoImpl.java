@@ -2,13 +2,16 @@ package controller.dao;
 
 import controller.dao.service.AdminDao;
 import controller.utils.JDBCUtils;
+import jdk.internal.util.xml.impl.ReaderUTF8;
 import model.pojo.Course;
 import model.pojo.Courseplan;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Reader;
 
 /**
  * @author: Hps, CAgAG
@@ -174,7 +177,7 @@ public class AdminDaoImpl implements AdminDao {
             connection.setAutoCommit(true);
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1,course.getCcode());
-            statement.setString(2,course.getCname());
+            statement.setNString(2, course.getCname());
             statement.setDouble(3,course.getCredit());
             statement.setString(4,course.getCcode());
             int i = statement.executeUpdate();
