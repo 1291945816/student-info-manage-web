@@ -197,8 +197,10 @@ public class AdminServlet extends HttpServlet implements AdminService {
     @Override
     public void update_updateCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Course cp = new Course();
-        cp.setCcode((String)request.getParameter("ccode"));
-        cp.setCname((String)request.getParameter("cname"));
+        System.out.println(request.getParameter("cname"));
+        cp.setCcode(request.getParameter("ccode"));
+        cp.setCname(request.getParameter("cname"));
+        System.out.println(cp.getCname());
         cp.setCredit(Double.parseDouble(request.getParameter("credit")));
 
         AdminDao adminDao=new AdminDaoImpl();

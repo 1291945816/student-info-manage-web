@@ -216,12 +216,12 @@ public class AdminDaoImpl implements AdminDao {
     @Test
     public void testDate(){
         AdminDao adminDao=new AdminDaoImpl();
-        Courseplan cp = new Courseplan();
-        cp.setCno("110");
+        Course cp = new Course();
+        cp.setCname("程序设计");
         cp.setCcode("AX1001");
-        cp.setStartdate("2020-2021-1");
+        cp.setCredit(0.5);
 
-        boolean flag = adminDao.update_courseplanValue(cp);
+        boolean flag = adminDao.update_courseValue(cp);
         System.out.println(flag);
 
     }
