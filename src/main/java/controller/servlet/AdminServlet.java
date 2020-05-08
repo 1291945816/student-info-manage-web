@@ -62,6 +62,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
 
         login_teacher.setPassword("");
         String s = JSON.toJSONString(login_teacher);
+
         try {
             System.out.println(s);
             response.getWriter().write(s);
