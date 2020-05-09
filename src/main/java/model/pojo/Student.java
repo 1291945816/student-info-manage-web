@@ -1,5 +1,7 @@
 package model.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -11,6 +13,7 @@ public class Student {
     private String sno;
     private String sname;
     private String ssex;
+    @JSONField(format = "yyyy-MM-dd")
     private Date birthday;
     private String clno;
     private String password;
