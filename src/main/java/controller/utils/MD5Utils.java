@@ -40,7 +40,7 @@ public class MD5Utils {
     }
     @Test
     public void test(){
-        String md5String = MD5Utils.getMD5String("123456");
+        String md5String = MD5Utils.getMD5String("123123");
         System.out.println(md5String);
 
 

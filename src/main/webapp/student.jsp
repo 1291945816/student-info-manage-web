@@ -2,7 +2,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8">
-    <title>学生管理系统</title>
+    <title>教务系统</title>
     <meta name="author" content="kilig">
     <link rel="stylesheet" type="text/css" href="./lib/layui/layui-v2.5.6/layui/css/layui.css" media="all">
     <script type="text/javascript" src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
@@ -17,7 +17,7 @@
 
     <ul class="layui-nav layui-bg-green" style="text-align: right; font-size: 20px">
         <li class="layui-nav-item" style="right: 75em" >
-            <a style="font-size: 25px;color: aliceblue">学生信息操作界面</a>
+            <a style="font-size: 20px;color: aliceblue">学生操作界面</a>
         </li>
         <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>

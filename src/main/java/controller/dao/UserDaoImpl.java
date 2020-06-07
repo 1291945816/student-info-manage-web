@@ -1,9 +1,16 @@
 package controller.dao;
 
 import controller.dao.service.UserDao;
+import controller.utils.JDBCUtils;
 import model.pojo.Class_;
 import model.pojo.Student;
+import org.junit.Test;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +21,9 @@ import java.util.List;
 
 
 public class UserDaoImpl implements UserDao {
+
+    //获取连接
+    private Connection connection=null;
 
     /**
      * 通过给定的班级，查询到这个班级的老师并返回
@@ -42,6 +52,47 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<Student> query_students(Student loginStudent) {
-        return null;
+        connection= JDBCUtils.getConnection();
+        List<Student> list=null;
+        String sql="select * from student where clno=? ";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,loginStudent.getClno());
+            ResultSet result = preparedStatement.executeQuery();
+            result.last();
+            if(result.getRow() > 0){
+                result.beforeFirst();
+                list=new ArrayList<>();
+                Student student=null;
+                while(result.next()){
+                    student = new Student();
+                    student.setSno(result.getString("sno"));
+                    student.setSname(result.getString("sname"));
+                    student.setSsex(result.getString("ssex"));
+                    list.add(student);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+
+
+        return list;
+    }
+
+
+    @Test
+    public void testQuery(){
+        UserDao test=new UserDaoImpl();
+        Student student=new Student();
+        student.setSno("1800100100");
+        student.setClno("18001001");
+        System.out.println(test.query_students(student));
+
+
+
     }
 }

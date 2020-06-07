@@ -21,8 +21,12 @@ public class EncodingFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        request.setCharacterEncoding("UTF-8");
+
+
         response.setContentType("application/json;charset=utf-8");
+
+        request.setCharacterEncoding("UTF-8");
+
         filterChain.doFilter(request,response);
     }
 

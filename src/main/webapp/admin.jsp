@@ -2,7 +2,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8">
-    <title>学生管理系统</title>
+    <title>教务系统</title>
     <meta name="author" content="kilig">
     <link rel="stylesheet" type="text/css" href="./lib/layui/layui-v2.5.6/layui/css/layui.css">
     <script src="./lib/layui/layui-v2.5.6/layui/layui.js"></script>
@@ -20,7 +20,7 @@
 <header>
     <ul class="layui-nav layui-bg-green" style="text-align: right; font-size: 20px">
         <li class="layui-nav-item" style="right: 75em" >
-            <a style="font-size: 20px;color: aliceblue ;text-align: left">管理员/教师信息操作界面</a>
+            <a style="font-size: 20px;color: aliceblue ;text-align: left">教师操作界面</a>
         </li>
         <li class="layui-nav-item"><span href="#">欢迎您,<%= request.getSession().getAttribute("username")%></span></li>
         <li class="layui-nav-item"><a href="#">首页</a></li>
@@ -44,8 +44,8 @@
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="show_courseInfo()">课程信息&课程计划</a></dd>
-                <dd><a href="">增加课程</a></dd>
-                <dd><a href="">增加课程计划</a></dd>
+                <dd><a onclick="addcourse()">增加课程</a></dd>
+                <dd><a onclick="addcourseplan()">增加课程计划</a></dd>
                 <dd><a href="">选课信息</a></dd>
 
             </dl>

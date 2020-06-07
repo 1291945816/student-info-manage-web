@@ -45,9 +45,9 @@ function show_courseInfo() {
 
 
    let  html_table1="<h1 style='text-align: center'>课程计划</h1>"
-       +"<table id='table1' lay-filter='test'></table>"
+       +"<table id='table1' lay-filter='test' width='800px'></table>"
       +"<hr /><h1 style='text-align: center'>课程</h1>"
-        +"<table id='table2' lay-filter='test2'></table>";
+        +"<table id='table2' lay-filter='test2' width='800px'></table>";
     $('#content').get(0).innerHTML=html_table1;
     layui.use('table',function () {
         var table=layui.table;
@@ -58,9 +58,8 @@ function show_courseInfo() {
             ,page: true,
             limit: 5,
             limits: [5,10,15,20]
-            ,height: 315,
+            ,height: 250,
             url: './adminservlet',
-            cellMinWidth:200,
             cols: [[ //表头
                 {field: 'cno' ,title: '课号', width:200, sort: true, fixed: 'left'}
                 ,{field: 'ccode',edit: 'text',title: '课程代码', width:200}
@@ -79,9 +78,8 @@ function show_courseInfo() {
             ,page: true,
             limit: 5,
             limits: [5,10,15,20]
-            ,height: 315,
+            ,height: 250,
             url: './adminservlet',
-            cellMinWidth:200,
             cols: [[ //表头
                 {field: 'ccode' ,title: '课程代码', width:200, sort: true, fixed: 'left'}
                 ,{field: 'cname',edit: 'text',title: '课程名称', width:200}
@@ -195,6 +193,92 @@ function show_courseInfo() {
 
 
     });
+
+
+
+
+
+}
+
+function addcourse() {
+
+    let courseform="<h1>增加课程</h1>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>课程代码</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='ccode'  class='layui-input'  placeholder='请输入课程代码' autocomplete='off'> "+
+        "</div></div>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>课程名称</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='cname'  class='layui-input'  placeholder='请输入课程名称' autocomplete='off'> "+
+        "</div></div>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>课程学分</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='credit'  class='layui-input'  placeholder='请输入课程学分' autocomplete='off'> "+
+        "</div></div>"+
+        "<div class='layui-form-item'>" +
+        "<div class='layui-input-block'>" +
+        "<button class='layui-btn'  id='submitdata' onclick='add(\"addcourse\")' >增加</button>"+
+        "</div></div>";
+    $('#content').get(0).innerHTML=courseform;
+
+}
+
+
+
+function addcourseplan() {
+
+    let courseform="<h1>增加课程计划</h1>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>课号</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='cno'  class='layui-input'  placeholder='请输入课号' > "+
+        "</div></div>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>课程代码</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='ccode'  class='layui-input'  placeholder='请输入课程代码' > "+
+        "</div></div>"+
+        "<div class='layui-form-item'>"+
+        "<label class='layui-form-label'>授课时间</label>"+
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='startdate'  class='layui-input'  placeholder='请输入授课时间' > "+
+        "</div></div>"+
+        "<div class='layui-form-item'>" +
+        "<div class='layui-input-block'>" +
+        "<button class='layui-btn'  id='submitdata' onclick='add(\"addcourseplan\")' >增加</button>"+
+        "</div></div>";
+    $('#content').get(0).innerHTML=courseform;
+
+}
+function add(name) {
+    let data;
+
+
+    if(name === 'addcourse'){
+        var ccode=$('input[name=ccode]').get(0).value;
+        var cname=$('input[name=cname]').get(0).value;
+        var credit=$('input[name=credit]').get(0).value;
+         data=JSON.stringify({
+            ccode:ccode,
+            cname:cname,
+            credit:credit
+        });
+
+    }else if (name==="addcourseplan"){
+        var cno=$('input[name=cno]').get(0).value;
+        var ccode=$('input[name=ccode]').get(0).value;
+        var startdata=$('input[name=startdate]').get(0).value;
+        data=JSON.stringify({
+            cno:cno,
+            ccode:ccode,
+            startdata:startdata
+        });
+
+    }
+    layer.msg(data);
 
 
 
