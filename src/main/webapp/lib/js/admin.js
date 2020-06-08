@@ -262,24 +262,39 @@ function add(name) {
         var ccode = $('input[name=ccode]').get(0).value;
         var cname = $('input[name=cname]').get(0).value;
         var credit = $('input[name=credit]').get(0).value;
-        data = JSON.stringify({
+        data = {
             ccode: ccode,
             cname: cname,
             credit: credit
-        });
+        };
+        $(function () {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: './adminservlet?action=addcourse',
+                data: data,
+                success: function (data) {
+                    if(data.code === "200"){
+                        layer.msg("添加成功",{icon:1});
+                    }else
+                        layer.msg("添加失败",{icon:2});
+                }
 
+            })
+
+        })
     } else if (name === "addcourseplan") {
         var cno = $('input[name=cno]').get(0).value;
         var ccode = $('input[name=ccode]').get(0).value;
         var startdata = $('input[name=startdate]').get(0).value;
-        data = JSON.stringify({
+        data = {
             cno: cno,
             ccode: ccode,
             startdata: startdata
-        });
+        };
 
     }
-    layer.msg("增加成功", { icon: 2 });
+
 }
 
 function changeprofile() {
