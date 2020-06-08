@@ -57,4 +57,12 @@ public interface AdminDao {
      */
     public boolean update_courseplanValue(Courseplan courseplan);
 
+
+    /**
+     *
+     * @param course 需要增加的课程信息
+     * @return
+     */
+    public boolean addcourse(Course course);
+
 }

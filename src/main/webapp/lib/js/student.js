@@ -194,3 +194,66 @@ function show_grade() {
     })
 
 }
+function changeprofile() {
+    let html = "<h1>修改个人信息</h1>"+
+        "<div class='layui-form-item'>" +
+        "<label class='layui-form-label'>生日:</label>" +
+        "<div class='layui-input-block'>" +
+        "<input type='date' name='birthday'  class='layui-input'  placeholder='请输入生日' > " +
+        "</div></div>" +
+        "<div class='layui-form-item'>" +
+        "<div class='layui-input-block'>" +
+        "<button class='layui-btn'  id='submitdata' onclick='changeinfoButton(\"changebirthday\")' >修改</button>" +
+        "</div></div>"+
+        "<div class='layui-form-item'>" +
+        "<label class='layui-form-label'>新密码:</label>" +
+        "<div class='layui-input-block'>" +
+        "<input type='password' name='password'  class='layui-input'  placeholder='请输入新密码' > " +
+        "</div></div>" +
+        "<div class='layui-form-item'>" +
+        "<label class='layui-form-label'>重复密码:</label>" +
+        "<div class='layui-input-block'>" +
+        "<input type='password' name='repassword'  class='layui-input'  placeholder='请再次输入密码' > " +
+        "</div></div>" +
+        "<div class='layui-form-item'>" +
+        "<div class='layui-input-block'>" +
+        "<button class='layui-btn'  id='submitdata' onclick='changeinfoButton(\"changepassword\")' >修改</button>" +
+        "</div></div>";
+
+    $('#content').get(0).innerHTML = html;
+
+}
+function changeinfoButton(name) {
+    let data;
+    if(name === 'changebirthday'){
+        let birthday = $('input[name=birthday]').get(0).value;
+        if(birthday === ""){
+            layer.msg("输入不能为空",{icon:2});
+            return false;
+        }
+        data=JSON.stringify({
+            birthday:birthday
+        })
+    }else if(name === 'changepassword'){
+        let password =  $('input[name=password]').get(0).value;
+        let repassword =  $('input[name=repassword]').get(0).value;
+
+        if(password === "" || repassword === ""){
+            layer.msg("密码不能为空",{icon:2});
+            return false;
+        }else if(password !== repassword){
+            layer.msg("两次输入的密码不一致",{icon:2});
+            return false;
+        }else if (password === repassword) {
+            data = JSON.stringify({
+                password:password
+            })
+        }
+    }
+    //此处发起ajax请求
+    layer.msg(data);
+
+
+
+
+}

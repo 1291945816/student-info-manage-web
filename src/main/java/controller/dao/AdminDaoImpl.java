@@ -216,6 +216,16 @@ public class AdminDaoImpl implements AdminDao {
         return flag;
     }
 
+    /**
+     * 插入成功则返回 true  插入失败则返回 false
+     * @param course 需要增加的课程信息
+     * @return
+     */
+    @Override
+    public boolean addcourse(Course course) {
+        return false;
+    }
+
     @Test
     public void testDate(){
         AdminDao adminDao=new AdminDaoImpl();

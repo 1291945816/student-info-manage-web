@@ -36,7 +36,7 @@
             <a href="javascript:">用户信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="show_info()">查看个人信息</a></dd>
-                <dd><a href="javascript:">修改个人信息</a></dd>
+                <dd><a onclick="changeprofile()">修改个人信息</a></dd>
                 <dd><a onclick="show_classInfo()">查看班级信息</a></dd>
                 <dd><a onclick="show_classInfo()">查看部门信息</a></dd>
             </dl>
@@ -51,7 +51,7 @@
         <li class="layui-nav-item"><a  onclick="show_grade()" >查看成绩</a></li>
     </ul>
     </div>
-    <div id="content" >
+    <div id="content" style="text-align: center">
 
     </div>
     </div>

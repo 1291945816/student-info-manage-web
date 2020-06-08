@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+ <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head >
     <meta charset="UTF-8">
@@ -37,7 +37,7 @@
             <a href="javascript:">用户信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="show_info()">查看个人信息</a></dd>
-                <dd><a href="javascript:">修改个人信息</a></dd>
+                <dd><a onclick="changeprofile()">修改个人信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
@@ -46,14 +46,14 @@
                 <dd><a onclick="show_courseInfo()">课程信息&课程计划</a></dd>
                 <dd><a onclick="addcourse()">增加课程</a></dd>
                 <dd><a onclick="addcourseplan()">增加课程计划</a></dd>
-                <dd><a href="">选课信息</a></dd>
+                <dd><a href="">增加可选课程</a></dd>
 
             </dl>
         </li>
         <li class="layui-nav-item">
             <a href="javascript:">部门信息</a>
             <dl class="layui-nav-child">
-                <dd><a href="">增加部门</a></dd>
+                <dd><a onclick="addpartdemt()">增加部门</a></dd>
                 <dd><a href="">删除部门</a></dd>
                 <dd><a href="">查看部门</a></dd>
             </dl>
@@ -76,6 +76,7 @@
 </main>
 </body>
 <script src="./lib/js/admin.js" ></script>
+<script src="./lib/js/department.js"></script>
 
 </html>
 

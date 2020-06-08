@@ -19,4 +19,5 @@ public interface AdminService {
     public void update_deleteCourse(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
     public void update_updateCourse(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException;
 
+
 }

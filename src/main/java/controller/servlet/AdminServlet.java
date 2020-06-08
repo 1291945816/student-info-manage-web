@@ -217,4 +217,15 @@ public class AdminServlet extends HttpServlet implements AdminService {
         }
         response.getWriter().write(JSON.toJSONString(map));
     }
+
+    /**
+     * 如果能够插入成功则返回 200 插入失败则返回 500
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void addcourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    }
 }
