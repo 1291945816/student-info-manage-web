@@ -223,18 +223,39 @@ public class AdminDaoImpl implements AdminDao {
      */
     @Override
     public boolean addcourse(Course course) {
-        return false;
+
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "insert course values (?, ?, ?)";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,course.getCcode());
+            statement.setNString(2, course.getCname());
+            statement.setDouble(3,course.getCredit());
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            flag=false;
+        }
+
+        return flag;
     }
 
     @Test
     public void testDate(){
         AdminDao adminDao=new AdminDaoImpl();
         Course cp = new Course();
-        cp.setCname("程序设计");
-        cp.setCcode("AX1001");
+        cp.setCname("程序设计jj");
+        cp.setCcode("AX10018");
         cp.setCredit(0.5);
 
-        boolean flag = adminDao.update_courseValue(cp);
+        boolean flag = adminDao.addcourse(cp);
         System.out.println(flag);
 
     }

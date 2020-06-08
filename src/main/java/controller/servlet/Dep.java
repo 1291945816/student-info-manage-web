@@ -67,7 +67,7 @@ public class Dep extends HttpServlet {
         department.setDleader(dleader);
 
         boolean b = departmentDao.addDepartment(department);
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String, Object>();
         if(b ) map.put("code","200");
         else map.put("code","500");
         String s = JSON.toJSONString(map);

@@ -62,7 +62,7 @@ public class UserDaoImpl implements UserDao {
             result.last();
             if(result.getRow() > 0){
                 result.beforeFirst();
-                list=new ArrayList<>();
+                list=new ArrayList<Student>();
                 Student student=null;
                 while(result.next()){
                     student = new Student();

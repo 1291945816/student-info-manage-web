@@ -226,6 +226,22 @@ public class AdminServlet extends HttpServlet implements AdminService {
      * @throws IOException
      */
     private void addcourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        Course cp = new Course();
+        cp.setCcode(request.getParameter("ccode"));
+        cp.setCname(request.getParameter("cname"));
+        cp.setCredit(Double.parseDouble(request.getParameter("credit")));
 
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.addcourse(cp);
+
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
     }
 }
