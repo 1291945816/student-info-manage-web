@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import controller.dao.AdminDaoImpl;
 import controller.dao.service.AdminDao;
 import controller.servlet.service.AdminService;
-import model.pojo.Course;
-import model.pojo.Courseplan;
-import model.pojo.Teacher;
+import model.pojo.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -280,8 +278,26 @@ public class AdminServlet extends HttpServlet implements AdminService {
      * @throws ServletException
      * @throws IOException
      */
-    private void addselectcourse(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    private void addteachcourse(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        Teacher login_teacher = (Teacher) request.getSession().getAttribute("teacher");
+        Teachcourse cp = new Teachcourse();
 
+        cp.setTno(login_teacher.getTno());
+        cp.setCno(request.getParameter("cno"));
+        cp.setCnum(Integer.parseInt(request.getParameter("cnum")));
+
+        AdminDao adminDao=new AdminDaoImpl();
+        boolean b = adminDao.addTeachCourse(cp);
+
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        response.getWriter().write(JSON.toJSONString(map));
     }
 
 

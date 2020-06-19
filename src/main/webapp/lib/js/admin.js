@@ -388,7 +388,7 @@ function changeinfoButton(name) {
 }
 
 
-function addselectcourse() {
+function addteachcourse() {
     let html = "<h1>增加可选课程</h1>"+
         "<div class='layui-form-item'>" +
         "<label class='layui-form-label'>课号</label>" +
@@ -406,7 +406,7 @@ function addselectcourse() {
         "</div></div>";
     $('#content').get(0).innerHTML = html;
 }
-function add_select_course() {
+function add_teach_course() {
 
     let cno = $("input[name=cno]").get(0).value;
     let num = $("input[name=num]").get(0).value;
@@ -417,7 +417,7 @@ function add_select_course() {
             type: "post",
             dataType: "json",
             data: data,
-            url: "./adminservlet?action=addselectcourse",
+            url: "./adminservlet?action=addteachcourse",
             success: function (data) {
                 if(data.code === "200"){
                     layer.msg("添加成功",{icon:1});

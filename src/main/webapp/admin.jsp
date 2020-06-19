@@ -46,7 +46,7 @@
                 <dd><a onclick="show_courseInfo()">课程信息&课程计划</a></dd>
                 <dd><a onclick="addcourse()">增加课程</a></dd>
                 <dd><a onclick="addcourseplan()">增加课程计划</a></dd>
-                <dd><a onclick="addselectcourse()">增加可选课程</a></dd>
+                <dd><a onclick="addteachcourse()">增加可选课程</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">

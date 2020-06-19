@@ -4,10 +4,7 @@ import controller.dao.service.AdminDao;
 import controller.utils.JDBCUtils;
 import controller.utils.MD5Utils;
 import jdk.internal.util.xml.impl.ReaderUTF8;
-import model.pojo.Course;
-import model.pojo.Courseplan;
-import model.pojo.Selectcourse;
-import model.pojo.Teacher;
+import model.pojo.*;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -328,12 +325,28 @@ public class AdminDaoImpl implements AdminDao {
 
     /**
      * 向选择课程表插入新的可选课程
-     * @param selectcourse
+     * @param
      * @return
      */
     @Override
-    public boolean addSelectCourse(Selectcourse selectcourse) {
-        return false;
+    public boolean addTeachCourse(Teachcourse teachcourse) {
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+        String sql = "insert teachcourse values (?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,teachcourse.getCno());
+            preparedStatement.setString(2,teachcourse.getTno());
+            preparedStatement.setDouble(3,teachcourse.getCnum());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1)
+                flag=true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
     }
 
     @Test
