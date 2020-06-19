@@ -256,8 +256,6 @@ function addcourseplan() {
 
 function add(name) {
     let data;
-
-
     if (name === 'addcourse') {
         var ccode = $('input[name=ccode]').get(0).value;
         var cname = $('input[name=cname]').get(0).value;
@@ -293,8 +291,25 @@ function add(name) {
             startdata: startdata
         };
 
-    }
+        //增加课程计划
+        $(function () {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: './adminservlet?action=addcourseplan',
+                data: data,
+                success: function (data) {
+                    if(data.code === "200"){
+                        layer.msg("添加成功",{icon:1});
+                    }else
+                        layer.msg("添加失败",{icon:2});
+                }
 
+            })
+
+        })
+
+    }
 }
 
 function changeprofile() {
@@ -370,10 +385,4 @@ function changeinfoButton(name) {
      });
 
  })
-
-
-
-
-
-
 }

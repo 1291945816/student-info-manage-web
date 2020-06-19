@@ -66,6 +66,8 @@ public interface AdminDao {
      */
     public boolean addcourse(Course course);
 
+    public boolean addcourseplan(Courseplan courseplan);
+
 
 
     public boolean changePassword(Teacher teacher);

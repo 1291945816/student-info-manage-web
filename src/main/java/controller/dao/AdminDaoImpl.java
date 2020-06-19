@@ -249,6 +249,20 @@ public class AdminDaoImpl implements AdminDao {
         return flag;
     }
 
+    /**
+     * 向数据库插入课程计划
+     * @param courseplan
+     * @return
+     */
+    @Override
+    public boolean addcourseplan(Courseplan courseplan) {
+        return false;
+    }
+
+
+
+
+
     @Override
     public boolean changePassword(Teacher teacher) {
         boolean flag=false;

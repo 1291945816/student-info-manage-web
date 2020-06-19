@@ -244,4 +244,18 @@ public class AdminServlet extends HttpServlet implements AdminService {
         }
         response.getWriter().write(JSON.toJSONString(map));
     }
+
+    /**
+     * 用于增加课程计划
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void addcourseplan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+    }
+
+
 }
