@@ -288,7 +288,7 @@ function add(name) {
         data = {
             cno: cno,
             ccode: ccode,
-            startdata: startdata
+            startdate: startdata
         };
 
         //增加课程计划
