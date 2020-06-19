@@ -273,5 +273,16 @@ public class AdminServlet extends HttpServlet implements AdminService {
 
     }
 
+    /**
+     * 用于可选课程的增加
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void addselectcourse(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+
+    }
+
 
 }
