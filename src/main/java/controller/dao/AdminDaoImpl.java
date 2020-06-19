@@ -256,7 +256,27 @@ public class AdminDaoImpl implements AdminDao {
      */
     @Override
     public boolean addcourseplan(Courseplan courseplan) {
-        return false;
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+
+        String sql = "insert courseplan values (?, ?, ?)";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,courseplan.getCno());
+            statement.setString(2, courseplan.getCcode());
+            statement.setString(3,courseplan.getStartdate());
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+
+        } catch (SQLException e) {
+            flag=false;
+        }
+
+        return flag;
     }
 
 
