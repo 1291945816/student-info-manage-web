@@ -284,7 +284,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
 
         cp.setTno(login_teacher.getTno());
         cp.setCno(request.getParameter("cno"));
-        cp.setCnum(Integer.parseInt(request.getParameter("cnum")));
+        cp.setCnum(Integer.parseInt(request.getParameter("num")));
 
         AdminDao adminDao=new AdminDaoImpl();
         boolean b = adminDao.addTeachCourse(cp);

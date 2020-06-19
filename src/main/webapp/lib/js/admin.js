@@ -402,7 +402,7 @@ function addteachcourse() {
         "</div></div>" +
         "<div class='layui-form-item'>" +
         "<div class='layui-input-block'>" +
-        "<button class='layui-btn'  id='submitdata' onclick='add_select_course()' >增加</button>" +
+        "<button class='layui-btn'  id='submitdata' onclick='add_teach_course()' >增加</button>" +
         "</div></div>";
     $('#content').get(0).innerHTML = html;
 }
@@ -411,7 +411,6 @@ function add_teach_course() {
     let cno = $("input[name=cno]").get(0).value;
     let num = $("input[name=num]").get(0).value;
     let data={cno:cno,num:num};
-    layer.msg(data);
     $(function () {
         $.ajax({
             type: "post",
