@@ -2,9 +2,11 @@ package controller.dao;
 
 import controller.dao.service.AdminDao;
 import controller.utils.JDBCUtils;
+import controller.utils.MD5Utils;
 import jdk.internal.util.xml.impl.ReaderUTF8;
 import model.pojo.Course;
 import model.pojo.Courseplan;
+import model.pojo.Teacher;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -247,15 +249,58 @@ public class AdminDaoImpl implements AdminDao {
         return flag;
     }
 
+    @Override
+    public boolean changePassword(Teacher teacher) {
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+        String sql = "update teacher set password=? where tno=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, teacher.getPassword());
+            preparedStatement.setString(2,teacher.getTno());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1)
+                flag=true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
+
+
+    }
+
+    @Override
+    public boolean changeBirthday(Teacher teacher) {
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+        String sql = "update teacher set birthday=? where tno=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDate(1, Date.valueOf(teacher.getBirthday().toString()));
+            preparedStatement.setString(2,teacher.getTno());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1)
+                flag=true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
+    }
+
     @Test
     public void testDate(){
         AdminDao adminDao=new AdminDaoImpl();
-        Course cp = new Course();
-        cp.setCname("程序设计jj");
-        cp.setCcode("AX10018");
-        cp.setCredit(0.5);
+        Teacher teacher=new Teacher();
+        teacher.setTno("13001");
+        String birth="1933-04-21";
+        teacher.setBirthday(Date.valueOf(birth));
 
-        boolean flag = adminDao.addcourse(cp);
+
+        boolean flag = adminDao.changeBirthday(teacher);
         System.out.println(flag);
 
     }

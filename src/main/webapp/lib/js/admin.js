@@ -327,16 +327,15 @@ function changeprofile() {
 
 }
 function changeinfoButton(name) {
- let data;
+ let data,flag=false;
  if(name === 'changebirthday'){
      let birthday = $('input[name=birthday]').get(0).value;
      if(birthday === ""){
          layer.msg("输入不能为空",{icon:2});
          return false;
      }
-     data=JSON.stringify({
-         birthday:birthday
-     })
+     data={birthday:birthday};
+
  }else if(name === 'changepassword'){
      let password =  $('input[name=password]').get(0).value;
      let repassword =  $('input[name=repassword]').get(0).value;
@@ -348,13 +347,31 @@ function changeinfoButton(name) {
          layer.msg("两次输入的密码不一致",{icon:2});
          return false;
      }else if (password === repassword) {
-         data = JSON.stringify({
-             password:password
-         })
+         data={password:password};
      }
  }
- //此处发起ajax请求
- layer.msg(data);
+ $(function () {
+     $.ajax({
+         type: "post",
+         dataType: "json",
+         url: './admininfo?action='+name,
+         data:data,
+         success:function (data) {
+             if (data.code === "200"){
+                 layer.msg("修改成功,5秒后会跳转到登陆页面...",{icon:1});
+                 setTimeout(function () {
+                     window.location.href="http://localhost/test/login.jsp";
+
+                 },5000)
+             }else {
+                 layer.msg("修改失败",{icon:2});
+             }
+         }
+     });
+
+ })
+
+
 
 
 

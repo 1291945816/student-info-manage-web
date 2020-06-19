@@ -2,6 +2,7 @@ package controller.dao.service;
 
 import model.pojo.Course;
 import model.pojo.Courseplan;
+import model.pojo.Teacher;
 
 import java.util.List;
 
@@ -64,6 +65,13 @@ public interface AdminDao {
      * @return
      */
     public boolean addcourse(Course course);
+
+
+
+    public boolean changePassword(Teacher teacher);
+
+    public boolean changeBirthday(Teacher teacher);
+
 
 
 
