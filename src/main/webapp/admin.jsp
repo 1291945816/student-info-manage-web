@@ -46,15 +46,13 @@
                 <dd><a onclick="show_courseInfo()">课程信息&课程计划</a></dd>
                 <dd><a onclick="addcourse()">增加课程</a></dd>
                 <dd><a onclick="addcourseplan()">增加课程计划</a></dd>
-                <dd><a href="">增加可选课程</a></dd>
-
+                <dd><a onclick="addselectcourse()">增加可选课程</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
             <a href="javascript:">部门信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="addpartdemt()">增加部门</a></dd>
-                <dd><a href="">删除部门</a></dd>
                 <dd><a href="">查看部门</a></dd>
             </dl>
         </li>

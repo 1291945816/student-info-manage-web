@@ -386,3 +386,52 @@ function changeinfoButton(name) {
 
  })
 }
+
+
+function addselectcourse() {
+    let html = "<h1>增加可选课程</h1>"+
+        "<div class='layui-form-item'>" +
+        "<label class='layui-form-label'>课号</label>" +
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='cno'  class='layui-input'  placeholder='请输入课号' > " +
+        "</div></div>" +
+        "<div class='layui-form-item'>" +
+        "<label class='layui-form-label'>数量</label>" +
+        "<div class='layui-input-block'>" +
+        "<input type='text' name='num'  class='layui-input'  placeholder='请输入人数' > " +
+        "</div></div>" +
+        "<div class='layui-form-item'>" +
+        "<div class='layui-input-block'>" +
+        "<button class='layui-btn'  id='submitdata' onclick='add_select_course()' >增加</button>" +
+        "</div></div>";
+    $('#content').get(0).innerHTML = html;
+}
+function add_select_course() {
+
+    let cno = $("input[name=cno]").get(0).value;
+    let num = $("input[name=num]").get(0).value;
+    let data={cno:cno,num:num};
+    layer.msg(data);
+    $(function () {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: data,
+            url: "./adminservlet?action=addselectcourse",
+            success: function (data) {
+                if(data.code === "200"){
+                    layer.msg("添加成功",{icon:1});
+                }else
+                {
+                    layer.msg("添加失败",{icon:2});
+                }
+
+            }
+        })
+
+    })
+
+
+
+
+}

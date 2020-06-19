@@ -42,7 +42,7 @@ To change this template use File | Settings | File Templates.
                 <br />
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">用户名</label>
                 <div class="layui-input-block">
-                    <input type="text"  name="username" required  lay-verify="required" placeholder="请输入用户名"  class="layui-input" style="width:200px;">
+                    <input type="text"  name="username" required  lay-verify="required" placeholder="请输入学号/工号"  class="layui-input" style="width:200px;">
                 </div>
             </div>
             <div class="layui-form-item">

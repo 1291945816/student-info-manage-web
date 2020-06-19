@@ -6,6 +6,7 @@ import controller.utils.MD5Utils;
 import jdk.internal.util.xml.impl.ReaderUTF8;
 import model.pojo.Course;
 import model.pojo.Courseplan;
+import model.pojo.Selectcourse;
 import model.pojo.Teacher;
 import org.junit.Test;
 
@@ -303,6 +304,16 @@ public class AdminDaoImpl implements AdminDao {
             JDBCUtils.closeConnection(connection);
         }
         return flag;
+    }
+
+    /**
+     * 向选择课程表插入新的可选课程
+     * @param selectcourse
+     * @return
+     */
+    @Override
+    public boolean addSelectCourse(Selectcourse selectcourse) {
+        return false;
     }
 
     @Test
