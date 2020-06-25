@@ -1,10 +1,12 @@
 package controller.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import controller.dao.DepartmentDaoImpl;
 import controller.dao.GradeDaoImpl;
 import controller.dao.service.DepartmentDao;
 import controller.dao.service.GradeDao;
+import model.pojo.Selectcourse;
 import model.pojo.Teacher;
 
 import javax.servlet.ServletException;
@@ -63,7 +65,42 @@ public class GradeController  extends HttpServlet {
         }
         String jsonString = JSONObject.toJSONString(map);
         resp.getWriter().write(jsonString);
+    }
 
+    /**
+     *  selectccode
+     *  sno
+     *  daygrade
+     *  examgrade
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void update_studentgrade(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        //获取参数
+        String selectccode = req.getParameter("selectccode");
+        String sno = req.getParameter("sno");
+        double daygrade = Double.valueOf(req.getParameter("daygrade"));
+        double examgrade = Double.valueOf(req.getParameter("examgrade"));
 
+        Selectcourse selectcourse = new Selectcourse();
+        selectcourse.setSno(sno);
+        selectcourse.setCno(selectccode);
+        selectcourse.setDaygrade(daygrade);
+        selectcourse.setExamgrade(examgrade);
+        selectcourse.setTotalgrade(0.2*daygrade + 0.8*examgrade);
+        //
+        boolean b = gradeDao.updateStudentGradeBySelectedCourse(selectcourse);
+
+        Map<String ,String> map=new HashMap<String, String>();
+        if(b){
+            map.put("code","200"); //成功则返回200
+
+        }else
+        {
+            map.put("code","500"); //失败则返回 500
+        }
+        resp.getWriter().write(JSON.toJSONString(map));
     }
 }
