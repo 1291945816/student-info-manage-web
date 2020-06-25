@@ -2,6 +2,8 @@ package controller.dao.service;
 
 import model.pojo.Department;
 
+import java.util.List;
+
 /**
  * @author: Hps
  * @date: 2020/6/8 15:27
@@ -14,5 +16,21 @@ public interface DepartmentDao {
      * @return
      */
     public boolean addDepartment(Department department);
+
+
+    /**
+     * 该函数时用来查询所有部门的信息
+     * @param page 页码
+     * @param limit 限制长度
+     * @return 查询到的所有部门信息
+     */
+    List<Department> queryDepartmentByPageAndLimit(String page,String limit);
+
+
+    boolean deleteDepartmentByDno(String dno);
+
+
+
+
 
 }

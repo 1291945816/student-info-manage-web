@@ -1,7 +1,10 @@
 package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import controller.dao.AdminDaoImpl;
 import controller.dao.DepartmentDaoImpl;
+import controller.dao.service.AdminDao;
 import controller.dao.service.DepartmentDao;
 import model.pojo.Department;
 
@@ -15,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +39,8 @@ public class Dep extends HttpServlet {
         //  try {
         try {
             Method method = DepClass.getDeclaredMethod(action,HttpServletRequest.class,HttpServletResponse.class);
-            method.invoke(this,req,resp);
+            if(method != null)
+                method.invoke(this,req,resp);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -79,5 +84,51 @@ public class Dep extends HttpServlet {
 
 
     }
+
+    private void query_department_info(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
+        String page=request.getParameter("page");
+        String limit=request.getParameter("limit");
+
+
+        AdminDao adminDao=new AdminDaoImpl();
+
+        Map<String,Object> map =new HashMap<>();
+        if(page != null && limit != null){
+            List<Department> departments = departmentDao.queryDepartmentByPageAndLimit(page, limit);
+            if(departments != null&&!departments.isEmpty()){
+                map.put("code","0");
+                map.put("msg"," 查询成功");
+                map.put("count",adminDao.get_Nums("department"));
+                map.put("data",departments);
+            }else{
+                map.put("code","500");
+                map.put("msg","Error:查询失败，无数据");
+            }
+
+        }else {
+            map.put("code","500");
+            map.put("msg","Error:查询失败，参数无效");
+        }
+        String jsonString = JSONObject.toJSONString(map);
+        response.getWriter().write(jsonString);
+    }
+    private void delete_department(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException{
+        String dno = request.getParameter("dno");
+        boolean status_deleteByDep = departmentDao.deleteDepartmentByDno(dno);
+        Map<String,Object> map = new HashMap<>();
+        if(status_deleteByDep){
+            map.put("code","200");
+            map.put("msg","删除成功!");
+        }else {
+            map.put("code","500");
+            map.put("msg","删除失败，部门不存在/该部门存在学生和老师，请先清除学生/老师...");
+        }
+
+        String jsonString = JSONObject.toJSONString(map);
+        response.getWriter().write(jsonString);
+    }
+
+
+
 
 }

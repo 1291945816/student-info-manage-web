@@ -2,12 +2,16 @@ package controller.dao;
 
 import controller.dao.service.DepartmentDao;
 import controller.utils.JDBCUtils;
+import model.pojo.Courseplan;
 import model.pojo.Department;
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: Hps
@@ -41,14 +45,71 @@ public class DepartmentDaoImpl implements DepartmentDao {
         return result;
     }
 
+    @Override
+    public List<Department> queryDepartmentByPageAndLimit(String pageCode, String limit) {
+        connection= JDBCUtils.getConnection();
+        List<Department> list=null;
+        Department department=null;
+        String sql="select * from department limit ?,?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int page=Integer.valueOf(pageCode);
+            int limit_i=Integer.valueOf(limit);
+
+            //展开分页查询，并且起始页由参数决定
+            statement.setInt(1,(page-1)*limit_i);
+            statement.setInt(2,limit_i);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.last();
+
+            if(resultSet.getRow() > 0)
+            {
+                resultSet.beforeFirst();
+                list=new ArrayList<Department>();
+                while(resultSet.next()){
+                    department=new Department();
+                    department.setDno(resultSet.getString("dno"));
+                    department.setDleader(resultSet.getString("dleader"));
+                    department.setDname(resultSet.getString("dname"));
+                    list.add(department);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public boolean deleteDepartmentByDno(String dno) {
+
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+        String sql = "delete from department where dno=?";
+
+        try {
+            connection.setAutoCommit(true);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,dno);
+            int i = statement.executeUpdate();
+            if(i>=1){
+                flag=true;
+            }
+        } catch (SQLException e) {
+            flag=false;
+        }
+        return flag;
+    }
+
     @Test
     public void testDep(){
-        Department department=new Department();
-        department.setDleader("111");
-        department.setDname("111");
-        department.setDno("100");
+
         DepartmentDao departmentDao=new DepartmentDaoImpl();
-        System.out.println(departmentDao.addDepartment(department));
+        System.out.println(departmentDao.deleteDepartmentByDno("010"));
 
     }
 }

@@ -13,6 +13,9 @@
         <a class="layui-btn layui-btn-xs" lay-event="store">保存</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+    <script type="text/html" id="con2">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
 
 </head>
 <body>
@@ -53,7 +56,7 @@
             <a href="javascript:">部门信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="addpartdemt()">增加部门</a></dd>
-                <dd><a href="">查看部门</a></dd>
+                <dd><a onclick="query_dep()">查看部门</a></dd>
             </dl>
         </li>
 
@@ -75,6 +78,7 @@
 </body>
 <script src="./lib/js/admin.js" ></script>
 <script src="./lib/js/department.js"></script>
+<script src="./lib/js/adminGrade.js"></script>
 
 </html>
 
