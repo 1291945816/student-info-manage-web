@@ -27,7 +27,14 @@ public interface DepartmentDao {
     List<Department> queryDepartmentByPageAndLimit(String page,String limit);
 
 
+    /**
+     * 根据给定的部门编号删除部门
+     * @param dno 部门编号
+     * @return
+     */
     boolean deleteDepartmentByDno(String dno);
+
+
 
 
 

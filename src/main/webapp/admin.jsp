@@ -1,4 +1,5 @@
  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="en">
 <head >
     <meta charset="UTF-8">
@@ -63,9 +64,8 @@
         <li class="layui-nav-item">
             <a href="javascript:">成绩管理</a>
             <dl class="layui-nav-child">
-                <dd><a href="">查看课程成绩</a></dd>
-                <dd><a href="">录入成绩</a></dd>
-                <dd><a href="">修改成绩</a></dd>
+                <dd><a onclick="qury_grade()">查看课程成绩</a></dd>
+                <dd><a onclick="insert()">录入成绩</a></dd>
             </dl>
         </li>
 
