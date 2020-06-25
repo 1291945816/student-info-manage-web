@@ -5,6 +5,7 @@ import controller.dao.DepartmentDaoImpl;
 import controller.dao.GradeDaoImpl;
 import controller.dao.service.DepartmentDao;
 import controller.dao.service.GradeDao;
+import model.pojo.CourseGrade;
 import model.pojo.Teacher;
 
 import javax.servlet.ServletException;
@@ -63,6 +64,32 @@ public class GradeController  extends HttpServlet {
         }
         String jsonString = JSONObject.toJSONString(map);
         resp.getWriter().write(jsonString);
+    }
+
+
+    private  void query_courseGrade(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        List<CourseGrade> selectedCourseGradeByCno = gradeDao.getSelectedCourseGradeByCno("33");
+        if(selectedCourseGradeByCno != null){
+            int greatNum=0,failNum = 0;
+            double grade=0.00;
+
+            for (CourseGrade courseGrade:selectedCourseGradeByCno){
+                if(courseGrade.getTotalgrade() > 90){
+                    greatNum ++;
+                }else if(courseGrade.getTotalgrade()<60){
+                    failNum++;
+                }
+                grade+=courseGrade.getTotalgrade();
+            }
+            Map<String,Object> map=new HashMap<>();
+            map.put("greatNum",greatNum);
+            map.put("failNum",failNum);
+            map.put("avggrade",grade/selectedCourseGradeByCno.size());
+            map.put("courseName",selectedCourseGradeByCno.get(0).getCname());
+            map.put("data",selectedCourseGradeByCno);
+            String jsonString = JSONObject.toJSONString(map);
+            resp.getWriter().write(jsonString);
+        }
 
 
     }
