@@ -76,7 +76,7 @@ function add_grade() {
     let daygrade=$("input[name=daygrade]").get(0).value;
     let examgrade=$("input[name=examgrade]").get(0).value;
 
-    if(daygrade != null && examgrade != null && sno!=null && select_value != null){
+    if(daygrade != null && examgrade != null && sno!=null && select_value != null && select_value != ''){
         console.log(121)
         let data={
             selectccode:select_value,
@@ -91,7 +91,7 @@ function add_grade() {
                 url: './gradeController?action=update_studentgrade',
                 data: data,
                 success: function (info) {
-                    if(info.code="200"){
+                    if(info.code==="200"){
                         layer.msg("录入成功!",{icon:1});
                     }else
                     {
