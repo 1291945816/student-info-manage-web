@@ -4,6 +4,7 @@ import controller.dao.service.GradeDao;
 import controller.utils.JDBCUtils;
 import model.pojo.Course;
 import model.pojo.CourseGrade;
+import model.pojo.Selectcourse;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -107,6 +108,30 @@ public class GradeDaoImpl implements GradeDao {
 
 
         return list;
+    }
+
+    @Override
+    public boolean updateStudentGradeBySelectedCourse(Selectcourse selectcourse) {
+        boolean flag=false;
+        connection=JDBCUtils.getConnection();
+        String sql = "update selectcourse set daygrade=?, examgrade=?, totalgrade=? where sno=? and cno=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1,selectcourse.getDaygrade());
+            preparedStatement.setDouble(2,selectcourse.getExamgrade());
+            preparedStatement.setDouble(3,selectcourse.getTotalgrade());
+
+            preparedStatement.setString(4,selectcourse.getSno());
+            preparedStatement.setString(5,selectcourse.getCno());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1)
+                flag=true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
     }
 
     @Test
