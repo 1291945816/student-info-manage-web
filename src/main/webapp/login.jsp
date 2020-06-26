@@ -37,7 +37,7 @@ To change this template use File | Settings | File Templates.
     <div class="container">
 
         <form class="layui-form" id="form_login" method="post">
-            <h1 class="welcome" style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">欢迎您,请登陆</h1>
+            <h1 class="welcome" style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">欢迎您,请登录</h1>
             <div class="layui-form-item">
                 <br />
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">用户名</label>
@@ -68,8 +68,8 @@ To change this template use File | Settings | File Templates.
                     <div class="layui-input-block">
                         <table border="0" style="border-collapse: separate;border-spacing: 10px">
                             <tr>
-                                <td><button  class="layui-btn" type="submit"  formaction="userLoginServlet" >学生登陆</button>
-                                <td> <button  class="layui-btn" type="submit"  formaction="adminLoginServlet" >教师登陆</button>
+                                <td><button  class="layui-btn" type="submit"  formaction="userLoginServlet" >学生登录</button>
+                                <td> <button  class="layui-btn" type="submit"  formaction="adminLoginServlet" >教师登录</button>
                             </tr>
                         </table>
 

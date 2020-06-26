@@ -373,7 +373,7 @@ function changeinfoButton(name) {
                 if (data.code === "200") {
                     layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
                     setTimeout(function () {
-                        window.location.href = "http://localhost/test/login.jsp";
+                        window.location.href = "http://localhost:8080/login.jsp";
 
                     }, 5000)
                 } else {
