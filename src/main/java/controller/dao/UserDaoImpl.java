@@ -2,14 +2,12 @@ package controller.dao;
 
 import controller.dao.service.UserDao;
 import controller.utils.JDBCUtils;
+import controller.utils.MD5Utils;
 import model.pojo.Class_;
 import model.pojo.Student;
 import org.junit.Test;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,27 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public String teacherName(Class_ class_) {
-        return null;
+        connection= JDBCUtils.getConnection(); //获取连接
+        String sql = "SELECT * FROM teacher WHERE tno=?";
+        String string = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,class_.getTno());
+            ResultSet resultSet =  preparedStatement.executeQuery();
+            resultSet.last();
+            if (resultSet.getRow() >0){
+                resultSet.beforeFirst();
+                resultSet.next();
+                string = resultSet.getString("tname");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+
+        return string;
     }
 
     /**
@@ -42,7 +60,30 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public Class_ query_classInfo(Student loginStudent) {
-        return null;
+        connection= JDBCUtils.getConnection(); //获取连接
+        String sql = " SELECT * FROM class WHERE clno=? ";
+        Class_ class_ = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,loginStudent.getClno());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            if (resultSet.getRow() > 0){
+                resultSet.beforeFirst();
+                resultSet.next();
+                class_=new Class_();
+                class_.setClno(resultSet.getString("clno"));
+                class_.setTno(resultSet.getString("tno"));
+                class_.setDno(resultSet.getString("dno"));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return class_;
     }
 
     /**
@@ -52,12 +93,13 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<Student> query_students(Student loginStudent) {
-        connection= JDBCUtils.getConnection();
+        connection= JDBCUtils.getConnection(); //获取连接
         List<Student> list=null;
-        String sql="select * from student where clno=? ";
+        String sql="select * from student where clno=? "; //sql 语句 printf("%d")
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,loginStudent.getClno());
+            PreparedStatement preparedStatement = connection.prepareStatement(sql); //预备语句  这个语句是可以有占位符
+            preparedStatement.setString(1,loginStudent.getClno()); //设置 第一个占位符的值为 学生的班级号
+
             ResultSet result = preparedStatement.executeQuery();
             result.last();
             if(result.getRow() > 0){
@@ -83,14 +125,62 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+    @Override
+    public boolean change_password(Student student) {
+        boolean flag = false;
+        connection = JDBCUtils.getConnection();
+        String sql = "UPDATE student set `password`= ? WHERE sno = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,student.getPassword());
+            preparedStatement.setString(2,student.getSno());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1){
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean chang_birstday(Student student) {
+        boolean flag = false;
+        connection = JDBCUtils.getConnection();
+        String sql = "UPDATE student set `birthday`= ? WHERE sno = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDate(1, Date.valueOf(student.getBirthday().toString()));
+            preparedStatement.setString(2,student.getSno());
+            int i = preparedStatement.executeUpdate();
+            if(i >= 1){
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return flag;
+    }
+
 
     @Test
     public void testQuery(){
         UserDao test=new UserDaoImpl();
+
         Student student=new Student();
         student.setSno("1800100100");
         student.setClno("18001001");
-        System.out.println(test.query_students(student));
+        student.setPassword(MD5Utils.getMD5String("000000"));
+        student.setBirthday(Date.valueOf("2020-04-02"));
+        //System.out.println(test.query_students(student));
+        //System.out.println(test.query_classInfo(student));
+        System.out.println(test.change_password(student));
+        System.out.println(test.chang_birstday(student));
 
 
 

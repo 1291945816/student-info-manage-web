@@ -39,7 +39,7 @@ function show_classInfo() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/test/userservlet?action=query_classInfo",
+        url: "./userservlet?action=query_classInfo",
         data: '',
         success: function (classInfo) {
             let class_info = classInfo.class_;
@@ -48,23 +48,25 @@ function show_classInfo() {
             let html1 = "<h1 style='text-align: center'>班级信息</h1>"
                 + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                 + "<tbody style='font-size: 30px'>"
-                + "<tr>" + "<td>classId: </td>" + "<td>" + class_info.clno + "</td>" + "</tr>"
-                + "<tr>" + "<td>department: </td>" + "<td>" + class_info.dno + "</td>" + "</tr>"
-                + "<tr>" + "<td>classTeacher: </td>" + "<td>" + teacher + "</td>" + "</tr></tbody></table><hr />";
+                + "<tr>" + "<td>班级: </td>" + "<td>" + class_info.clno + "</td>" + "</tr>"
+                + "<tr>" + "<td>部门: </td>" + "<td>" + class_info.dno + "</td>" + "</tr>"
+                + "<tr>" + "<td>班主任: </td>" + "<td>" + teacher + "</td>" + "</tr></tbody></table><hr />";
             let html2 = "<h1 style='text-align: center'>班级成员</h1>"
                 + "<table  lay-filter='data_parse'  >"
                 +"<thead>"
                 + "<tr>" +
-                "<th lay-data=\"{field:'id',width: 300,sort: true}\" >" +"id </th>"
-                +"<th lay-data=\"{field:'name',width: 200}\">" +"name</th>"
-                +"<th lay-data=\"{field:'name',width: 200}\">" +"sex</th>"
+                "<th lay-data=\"{field:'id',width: 300,sort: true}\" >" +"学号 </th>"
+                +"<th lay-data=\"{field:'sname',width: 200}\">" +"姓名</th>"
+                +"<th lay-data=\"{field:'ssex',width: 200}\">" +"性别</th>"
                 +"</tr>"
                 +"</thead><tbody>";
             students_info.forEach(function (student_info) {
                 let id = student_info.sno;
+                console.log(student_info.sname)
                 html2=html2
                     +"<tr><td>"+id+"</td>"
                     +"<td>"+student_info.sname+"</td>"
+                    +"<td>"+student_info.ssex+"</td>"
                     + "</tr>";
             });
             html2=html2+"</tbody></table>";
@@ -92,7 +94,7 @@ function show_allCourseInfo() {
         type: 'post',
         data: '',
         dataType: 'json',
-        url: "/test/userservlet?action=query_allCourse",
+        url: "./userservlet?action=query_allCourse",
         success: function (result) {
             let code = result.code;
             if(code === '500'){
@@ -145,7 +147,7 @@ function show_grade() {
     $.ajax({
         type: "post",
         data: '',
-        url: '/test/userservlet?action=query_allCourseGrade',
+        url: './userservlet?action=query_allCourseGrade',
         dataType: 'json',
         success: function (item) {
             if(item.code === 500){
@@ -231,9 +233,7 @@ function changeinfoButton(name) {
             layer.msg("输入不能为空",{icon:2});
             return false;
         }
-        data=JSON.stringify({
-            birthday:birthday
-        })
+        data = {birthday: birthday};
     }else if(name === 'changepassword'){
         let password =  $('input[name=password]').get(0).value;
         let repassword =  $('input[name=repassword]').get(0).value;
@@ -245,13 +245,29 @@ function changeinfoButton(name) {
             layer.msg("两次输入的密码不一致",{icon:2});
             return false;
         }else if (password === repassword) {
-            data = JSON.stringify({
-                password:password
-            })
+            data = {password: password};
         }
     }
-    //此处发起ajax请求
-    layer.msg(data);
+    $(function () {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: './userInfoChange?action=' + name,
+            data: data,
+            success: function (data) {
+                if (data.code === 200) {
+                    layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
+                    setTimeout(function () {
+                        window.location.href = "http://localhost:8080/login.jsp";
+
+                    }, 5000)
+                } else {
+                    layer.msg("修改失败", {icon: 2});
+                }
+            }
+        });
+
+    })
 
 
 
