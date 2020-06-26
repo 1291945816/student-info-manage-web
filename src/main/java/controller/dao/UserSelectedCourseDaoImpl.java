@@ -1,6 +1,6 @@
 package controller.dao;
 
-import controller.dao.service.UserSelectedCourseDao;
+import controller.dao.service.*;
 import controller.utils.JDBCUtils;
 import model.pojo.CourseInfo;
 import org.junit.Test;

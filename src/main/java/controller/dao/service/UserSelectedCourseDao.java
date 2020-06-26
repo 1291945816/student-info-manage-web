@@ -20,3 +20,4 @@ public interface UserSelectedCourseDao {
     boolean subNumByCno(String cno,Integer num);
 
 }
+

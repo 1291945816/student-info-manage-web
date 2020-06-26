@@ -1,15 +1,11 @@
 package controller.servlet;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import controller.dao.DepartmentDaoImpl;
 import controller.dao.UserDaoImpl;
 import controller.dao.UserSelectedCourseDaoImpl;
-import controller.dao.service.DepartmentDao;
 import controller.dao.service.UserDao;
 import controller.dao.service.UserSelectedCourseDao;
 import model.pojo.CourseInfo;
-import model.pojo.Department;
 import model.pojo.Student;
 
 import javax.servlet.ServletException;
@@ -99,6 +95,7 @@ public class UserSelectedCourse extends HttpServlet {
             {
                 num-=1;
                 userSelectedCourseDao.subNumByCno(cno,num);
+
                 map.put("code","200");
                 map.put("msg","选课成功");
 
