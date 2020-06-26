@@ -62,7 +62,6 @@ public class AdminServlet extends HttpServlet implements AdminService {
         String s = JSON.toJSONString(login_teacher);
 
         try {
-            System.out.println(s);
             response.getWriter().write(s);
         } catch (Exception e){
             e.printStackTrace();
@@ -196,10 +195,9 @@ public class AdminServlet extends HttpServlet implements AdminService {
     @Override
     public void update_updateCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Course cp = new Course();
-        System.out.println(request.getParameter("cname"));
+
         cp.setCcode(request.getParameter("ccode"));
         cp.setCname(request.getParameter("cname"));
-        System.out.println(cp.getCname());
         cp.setCredit(Double.parseDouble(request.getParameter("credit")));
 
         AdminDao adminDao=new AdminDaoImpl();

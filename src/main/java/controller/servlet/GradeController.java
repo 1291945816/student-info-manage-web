@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,7 @@ public class GradeController  extends HttpServlet {
 
 
     private  void query_courseGrade(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        List<CourseGrade> selectedCourseGradeByCno = gradeDao.getSelectedCourseGradeByCno("33");
+        List<CourseGrade> selectedCourseGradeByCno = gradeDao.getSelectedCourseGradeByCno(req.getParameter("value"));
         if(selectedCourseGradeByCno != null){
             int greatNum=0,failNum = 0;
             double grade=0.00;
@@ -84,14 +85,21 @@ public class GradeController  extends HttpServlet {
                 grade+=courseGrade.getTotalgrade();
             }
             Map<String,Object> map=new HashMap<>();
+            String format = new DecimalFormat("#.00").format(grade / selectedCourseGradeByCno.size());
             map.put("greatNum",greatNum);
             map.put("failNum",failNum);
-            map.put("avggrade",grade/selectedCourseGradeByCno.size());
+            map.put("avggrade",format);
             map.put("courseName",selectedCourseGradeByCno.get(0).getCname());
             map.put("data",selectedCourseGradeByCno);
+            map.put("code","200");
             String jsonString = JSONObject.toJSONString(map);
             resp.getWriter().write(jsonString);
-        }
+        }else {
+            Map<String,Object> map=new HashMap<>();
+            map.put("code","500");
+            String jsonString = JSONObject.toJSONString(map);
+            resp.getWriter().write(jsonString);
+            }
     }
 
     /**

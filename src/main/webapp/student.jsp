@@ -9,6 +9,9 @@
     <link rel="icon" href="./lib/images/icon.ico" type="image/icon">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="./lib/css/student.css">
+    <script type="text/html" id="con">
+        <a class="layui-btn layui-btn-xs" lay-event="store">选它</a>
+    </script>
 
 </head>
 <body>
@@ -45,7 +48,7 @@
             <a href="javascript:">课程信息</a>
             <dl class="layui-nav-child">
                 <dd><a onclick="show_allCourseInfo()">查看已选课程</a></dd>
-                <dd><a onclick="show_allCourseInfo()">选择课程</a></dd>
+                <dd><a onclick="select_course()">选择课程</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a  onclick="show_grade()" >查看成绩</a></li>
@@ -58,4 +61,5 @@
 </main>
 </body>
 <script type="text/javascript" src="lib/js/student.js"></script>
+<script type="text/javascript" src="lib/js/select_seudent.js"></script>
 </html>
