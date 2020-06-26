@@ -34,12 +34,31 @@ function show_info() {
         }
     })
 }
+function show_department() {
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "./userservlet?action=query_departmentInfo",
+        data: '',
+        success: function (department) {
+            let html1 = "<h1 style='text-align: center'>班级信息</h1>"
+                + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
+                + "<tbody style='font-size: 30px'>"
+                + "<tr>" + "<td>部门编号: </td>" + "<td>" +department.dno+ "</td>" + "</tr>"
+                + "<tr>" + "<td>部门名称: </td>" + "<td>" + department.dname + "</td>" + "</tr>"
+                + "<tr>" + "<td>部门负责人: </td>" + "<td>" + department.dleader+ "</td>" + "</tr></tbody></table><hr />";
+        }
+    });
+
+
+
+}
 
 function show_classInfo() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/test/userservlet?action=query_classInfo",
+        url: "./userservlet?action=query_classInfo",
         data: '',
         success: function (classInfo) {
             let class_info = classInfo.class_;
