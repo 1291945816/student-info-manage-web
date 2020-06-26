@@ -105,6 +105,11 @@ public class DepartmentDaoImpl implements DepartmentDao {
         return flag;
     }
 
+    @Override
+    public Department queryDepartmentInfoByDno(String dno) {
+        return null;
+    }
+
     @Test
     public void testDep(){
 

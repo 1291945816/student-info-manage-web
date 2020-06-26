@@ -10,5 +10,13 @@ import java.util.List;
  * @description:
  */
 public interface UserSelectedCourseDao {
+
     List<CourseInfo> queryUnselectCourseBySno(String sno,String page,String limits);
+
+    Long queryResult(String sno);
+
+    boolean insertSelectCourseByStudent(String cno,String sno);
+
+    boolean subNumByCno(String cno,Integer num);
+
 }

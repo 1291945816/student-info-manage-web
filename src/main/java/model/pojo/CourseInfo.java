@@ -10,12 +10,12 @@ public class CourseInfo {
     private String ccode;
     private String cname;
     private String tname;
-    private Double cnum;
+    private Integer cnum;
 
     public CourseInfo() {
     }
 
-    public CourseInfo(String cno, String ccode, String cname, String tname, Double cnum) {
+    public CourseInfo(String cno, String ccode, String cname, String tname, Integer cnum) {
         this.cno = cno;
         this.ccode = ccode;
         this.cname = cname;
@@ -55,11 +55,11 @@ public class CourseInfo {
         this.tname = tname;
     }
 
-    public Double getCnum() {
+    public Integer getCnum() {
         return cnum;
     }
 
-    public void setCnum(Double cnum) {
+    public void setCnum(Integer cnum) {
         this.cnum = cnum;
     }
 

@@ -35,18 +35,20 @@ function show_info() {
     })
 }
 function show_department() {
+
     $.ajax({
         type: "post",
         dataType: "json",
         url: "./userservlet?action=query_departmentInfo",
         data: '',
         success: function (department) {
-            let html1 = "<h1 style='text-align: center'>班级信息</h1>"
+            let html1 = "<h1 style='text-align: center'>部门信息</h1>"
                 + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                 + "<tbody style='font-size: 30px'>"
                 + "<tr>" + "<td>部门编号: </td>" + "<td>" +department.dno+ "</td>" + "</tr>"
                 + "<tr>" + "<td>部门名称: </td>" + "<td>" + department.dname + "</td>" + "</tr>"
                 + "<tr>" + "<td>部门负责人: </td>" + "<td>" + department.dleader+ "</td>" + "</tr></tbody></table><hr />";
+            $('#content').get(0).innerHTML=html1;
         }
     });
 

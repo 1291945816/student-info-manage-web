@@ -227,7 +227,7 @@ public class AdminDaoImpl implements AdminDao {
         boolean flag=false;
         connection=JDBCUtils.getConnection();
 
-        String sql = "insert course values (?, ?, ?)";
+        String sql = "insert into course values (?, ?, ?)";
 
         try {
             connection.setAutoCommit(true);
@@ -257,7 +257,7 @@ public class AdminDaoImpl implements AdminDao {
         boolean flag=false;
         connection=JDBCUtils.getConnection();
 
-        String sql = "insert courseplan values (?, ?, ?)";
+        String sql = "insert into courseplan values (?, ?, ?)";
 
         try {
             connection.setAutoCommit(true);
@@ -332,7 +332,7 @@ public class AdminDaoImpl implements AdminDao {
     public boolean addTeachCourse(Teachcourse teachcourse) {
         boolean flag=false;
         connection=JDBCUtils.getConnection();
-        String sql = "insert teachcourse values (?, ?, ?)";
+        String sql = "insert into teachcourse values (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,teachcourse.getCno());

@@ -69,6 +69,11 @@ public class Userservlet extends HttpServlet implements UserService {
 
     }
 
+    private void query_departmentInfo(HttpServletRequest request, HttpServletResponse response){
+
+
+    }
+
     @Override
     public void query_classInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Student login_student = (Student)  request.getSession().getAttribute("student");

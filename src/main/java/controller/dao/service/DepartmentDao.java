@@ -34,10 +34,12 @@ public interface DepartmentDao {
      */
     boolean deleteDepartmentByDno(String dno);
 
-
-
-
-
+    /**
+     * 根据给定的部门编号获取部门的信息
+     * @param dno
+     * @return
+     */
+    Department queryDepartmentInfoByDno(String dno);
 
 
 }
