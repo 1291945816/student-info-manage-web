@@ -2,9 +2,7 @@ package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import controller.dao.DepartmentDaoImpl;
 import controller.dao.GradeDaoImpl;
-import controller.dao.service.DepartmentDao;
 import controller.dao.service.GradeDao;
 import model.pojo.Selectcourse;
 import model.pojo.CourseGrade;

@@ -2,10 +2,14 @@ package controller.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import controller.dao.DepartmentDaoImpl;
 import controller.dao.UserDaoImpl;
+import controller.dao.service.DepartmentDao;
 import controller.dao.service.UserDao;
 import controller.servlet.service.UserService;
 import model.pojo.Class_;
+import model.pojo.Department;
+import model.pojo.SelectedCourse;
 import model.pojo.Student;
 
 import javax.servlet.ServletException;
@@ -29,7 +33,7 @@ import java.util.Map;
 public class Userservlet extends HttpServlet implements UserService {
     private String action=null;
     private final  UserDao userDao=new UserDaoImpl();
-
+    private final DepartmentDao departmentDao = new DepartmentDaoImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -65,12 +69,35 @@ public class Userservlet extends HttpServlet implements UserService {
     }
 
     @Override
-    public void query_allCourse(HttpServletRequest request, HttpServletResponse response) {
+    public void query_allCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Student login_student = (Student)  request.getSession().getAttribute("student");
+        login_student.setPassword("");
+        List<SelectedCourse> list = userDao.querySelectedCourseBySno(login_student.getSno());
+        Map<String,Object> map = new HashMap<>();
+        if(list != null){
+            map.put("code",200);
+            map.put("courses",list);
+        }else
+            map.put("code",500);
+        String string = JSONObject.toJSONString(map);
+        response.getWriter().write(string);
 
     }
 
     private void query_departmentInfo(HttpServletRequest request, HttpServletResponse response){
-
+        Student login_student = (Student)  request.getSession().getAttribute("student");
+        login_student.setPassword("");
+        Department department = departmentDao.queryDepartmentInfoByClno(login_student.getClno());
+        Map<String,Object> map = new HashMap<>();
+        map.put("dno",department.getDno());
+        map.put("dleader",department.getDleader());
+        map.put("dname",department.getDname());
+        String string = JSONObject.toJSONString(map);
+        try {
+            response.getWriter().write(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

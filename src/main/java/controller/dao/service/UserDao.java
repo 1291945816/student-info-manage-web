@@ -1,6 +1,7 @@
 package controller.dao.service;
 
 import model.pojo.Class_;
+import model.pojo.SelectedCourse;
 import model.pojo.Student;
 
 import java.util.List;
@@ -28,5 +29,8 @@ public interface UserDao {
 
     //通过学号修改学生的生日
     boolean chang_birstday(Student student);
+
+
+    List<SelectedCourse> querySelectedCourseBySno(String sno);
 
 }

@@ -1,8 +1,7 @@
 package controller.dao;
 
-import controller.dao.service.DepartmentDao;
+import controller.dao.service.*;
 import controller.utils.JDBCUtils;
-import model.pojo.Courseplan;
 import model.pojo.Department;
 import org.junit.Test;
 
@@ -106,15 +105,38 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Department queryDepartmentInfoByDno(String dno) {
-        return null;
+    public Department queryDepartmentInfoByClno(String clno) {
+        connection = JDBCUtils.getConnection();
+        Department department = null;
+        String sql = "SELECT department.dno,dleader,dname FROM department,class WHERE class.dno=department.dno AND clno=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,clno);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            if (resultSet.getRow() > 0){
+                resultSet.beforeFirst();
+                resultSet.next();
+                department = new Department();
+                department.setDno(resultSet.getString("dno"));
+                department.setDleader(resultSet.getString("dleader"));
+                department.setDname(resultSet.getString("dname"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return department;
     }
 
     @Test
     public void testDep(){
 
         DepartmentDao departmentDao=new DepartmentDaoImpl();
-        System.out.println(departmentDao.deleteDepartmentByDno("010"));
+
+        System.out.println(departmentDao.queryDepartmentInfoByClno("18001001"));
+
 
     }
 }

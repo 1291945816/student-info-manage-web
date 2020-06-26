@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public interface UserService {
     public void query_allCourseGrade(HttpServletRequest request, HttpServletResponse response);
-    public void query_allCourse(HttpServletRequest request,HttpServletResponse response);
+    public void query_allCourse(HttpServletRequest request,HttpServletResponse response) throws IOException;
     public void query_classInfo(HttpServletRequest request,HttpServletResponse response) throws IOException;
     public void query_studentInfo(HttpServletRequest request,HttpServletResponse response);
 }

@@ -41,7 +41,7 @@
                 <dd><a onclick="show_info()">查看个人信息</a></dd>
                 <dd><a onclick="changeprofile()">修改个人信息</a></dd>
                 <dd><a onclick="show_classInfo()">查看班级信息</a></dd>
-                <dd><a onclick="show_classInfo()">查看部门信息</a></dd>
+                <dd><a onclick="show_department()">查看部门信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">

@@ -137,11 +137,11 @@ function show_allCourseInfo() {
                     +"</tr>"
                     +"</thead><tbody>";
                 courses.forEach(function (item) {
-                    html=html+"<tr><td>"+item.courseId+"</td>"
-                        +"<td>"+item.name+"</td>"
-                        +"<td>"+item.startDate+"</td>"
+                    html=html+"<tr><td>"+item.cno+"</td>"
+                        +"<td>"+item.cname+"</td>"
+                        +"<td>"+item.startdate+"</td>"
                         +"<td>"+item.credit+"</td>"
-                        +"<td>"+item.teacher+"</td></tr>";
+                        +"<td>"+item.tname+"</td></tr>";
                 });
                 html+="</tbody></table>";
                 $('#content').get(0).innerHTML=html;

@@ -4,6 +4,7 @@ import controller.dao.service.UserDao;
 import controller.utils.JDBCUtils;
 import controller.utils.MD5Utils;
 import model.pojo.Class_;
+import model.pojo.SelectedCourse;
 import model.pojo.Student;
 import org.junit.Test;
 
@@ -167,6 +168,55 @@ public class UserDaoImpl implements UserDao {
         return flag;
     }
 
+    @Override
+    public List<SelectedCourse> querySelectedCourseBySno(String sno) {
+        String sql="SELECT DISTINCT\n" +
+                "	selectcourse.cno,\n" +
+                "	cname,\n" +
+                "	startdate,\n" +
+                "	credit,\n" +
+                "	tname \n" +
+                "FROM\n" +
+                "	selectcourse,\n" +
+                "	teachcourse,\n" +
+                "	teacher,\n" +
+                "	course,\n" +
+                "	courseplan \n" +
+                "WHERE\n" +
+                "	selectcourse.cno = teachcourse.cno \n" +
+                "	AND selectcourse.cno = courseplan.cno \n" +
+                "	AND teachcourse.tno = teacher.tno \n" +
+                "	AND course.ccode = courseplan.ccode \n" +
+                "	AND selectcourse.sno = ?";
+        List<SelectedCourse> list=null;
+        Connection connection = JDBCUtils.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,sno);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            if (resultSet.getRow() > 0){
+                resultSet.beforeFirst();
+                list = new ArrayList<SelectedCourse>();
+                while (resultSet.next()){
+                    SelectedCourse selectedCourse = new SelectedCourse();
+                    selectedCourse.setCno(resultSet.getString("cno"));
+                    selectedCourse.setCname(resultSet.getString("cname"));
+                    selectedCourse.setStartdate(resultSet.getString("startdate"));
+                    selectedCourse.setCredit(resultSet.getDouble("credit"));
+                    selectedCourse.setTname(resultSet.getString("tname"));
+                    list.add(selectedCourse);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return list;
+
+    }
+
 
     @Test
     public void testQuery(){
@@ -179,8 +229,8 @@ public class UserDaoImpl implements UserDao {
         student.setBirthday(Date.valueOf("2020-04-02"));
         //System.out.println(test.query_students(student));
         //System.out.println(test.query_classInfo(student));
-        System.out.println(test.change_password(student));
-        System.out.println(test.chang_birstday(student));
+        //System.out.println(test.change_password(student));
+        System.out.println(test.querySelectedCourseBySno(student.getSno()));
 
 
 
