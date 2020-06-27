@@ -2,8 +2,8 @@ package controller.dao;
 
 import controller.dao.service.GradeDao;
 import controller.utils.JDBCUtils;
-import model.pojo.Course;
 import model.pojo.CourseGrade;
+import model.pojo.Grades;
 import model.pojo.Selectcourse;
 import org.junit.Test;
 
@@ -134,10 +134,61 @@ public class GradeDaoImpl implements GradeDao {
         return flag;
     }
 
+    @Override
+    public List<Grades> getStudentGradesBySno(String sno) {
+        List<Grades> list = null;
+        Grades grades = null;
+        String sql =  "SELECT\n" +
+                "	cname,\n" +
+                "	credit,\n" +
+                "	courseplan.cno,\n" +
+                "	daygrade,\n" +
+                "	examgrade,\n" +
+                "	totalgrade \n" +
+                "FROM\n" +
+                "	course,\n" +
+                "	selectcourse,\n" +
+                "	courseplan \n" +
+                "WHERE\n" +
+                "	course.ccode = courseplan.ccode \n" +
+                "	AND courseplan.cno = selectcourse.cno \n" +
+                "	AND sno = ?";
+        Connection connection = JDBCUtils.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,sno);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+
+            if (resultSet.getRow() > 0){
+                resultSet.beforeFirst();
+                list = new ArrayList<>();
+                while (resultSet.next()){
+                    grades = new Grades();
+                        grades.setCname(resultSet.getString("cname"));
+                        grades.setCredit(resultSet.getDouble("credit"));
+                        grades.setCno(resultSet.getString("cno"));
+                        grades.setDaygrade(resultSet.getDouble("daygrade"));
+                        grades.setExamgrade(resultSet.getDouble("examgrade"));
+                        grades.setGrade(resultSet.getDouble("totalgrade"));
+                        list.add(grades);
+                    
+
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
+        }
+        return list;
+    }
+
     @Test
     public void test(){
         GradeDao gradeDao = new GradeDaoImpl();
-        System.out.println(gradeDao.getSelectedCourseGradeByCno("22").size());
+        System.out.println(gradeDao.getStudentGradesBySno("1800100100"));
 
     }
 

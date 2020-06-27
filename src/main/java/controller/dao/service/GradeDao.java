@@ -1,6 +1,7 @@
 package controller.dao.service;
 
 import model.pojo.CourseGrade;
+import model.pojo.Grades;
 import model.pojo.Selectcourse;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface GradeDao {
     List<CourseGrade> getSelectedCourseGradeByCno(String cno);
 
     boolean updateStudentGradeBySelectedCourse(Selectcourse selectcourse);
+
+    //通过学号 获取学生的成绩
+    List<Grades> getStudentGradesBySno(String sno);
 }

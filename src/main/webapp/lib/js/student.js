@@ -171,7 +171,7 @@ function show_grade() {
         url: './userservlet?action=query_allCourseGrade',
         dataType: 'json',
         success: function (item) {
-            if(item.code === 500){
+            if(item.code === "500"){
                 layui.use('layer',function () {
                     layer.msg('未查询到相关的成绩信息', {icon: 0});
                 })
@@ -181,32 +181,30 @@ function show_grade() {
                     + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                     + "<tbody style='font-size: 30px'>"
                     + "<tr>" + "<td>学分绩: </td>" + "<td style='color: red'>" +item.creditGrade+ "</td>" + "</tr>"
-                    + "<tr>" + "<td>优秀门数: </td>" + "<td style='color: red'>" + item.count + "</td>" + "</tr>"
+                    + "<tr>" + "<td>优秀门数: </td>" + "<td style='color: red'>" + item.greatCount + "</td>" + "</tr>"
                     + "<tr>" + "<td>及格门数: </td>" + "<td style='color: red'>" + item.passCount + "</td>" + "</tr>"
                     + "<tr>" + "<td>不及格门数: </td>" + "<td style='color: red'>" + item.failCount + "</td>" + "</tr>"
-                    + "<tr>" + "<td>平均分: </td>" + "<td style='color: red'>" + item.avgGrade+ "</td>" + "</tr></tbody></table>";
+                    +"</tbody></table>";
                 let grades=item.grades;
 
                 let htm2="<h1 style='text-align: center'>各科成绩</h1>"
                     + "<table  lay-filter='data_parse'  >"
                     +"<thead>"
                     + "<tr>" +
-                    "<th lay-data=\"{field:'courseId ',width: 300,sort: true}\" >" +"courseId </th>"
-                    +"<th lay-data=\"{field:'name',width: 300}\">" +"name</th>"
-                    +"<th lay-data=\"{field:'daygrade',width: 200,sort:true}\">" +"daygrade </th>"
-                    +"<th lay-data=\"{field:'examgrade',width: 200,sort:true}\">" +"examgrade </th>"
-                    +"<th lay-data=\"{field:'grade',width: 290}\">" +"grade </th>"
-                    +"<th lay-data=\"{field:'credit',width: 100}\">" +"credit </th>"
+                    "<th lay-data=\"{field:'cno ',width: 300,sort: true}\" >" +"课号 </th>"
+                    +"<th lay-data=\"{field:'cname',width: 300}\">" +"课程名称</th>"
+                    +"<th lay-data=\"{field:'daygrade',width: 200,sort:true}\">" +"平时成绩 </th>"
+                    +"<th lay-data=\"{field:'examgrade',width: 200,sort:true}\">" +"考试成绩 </th>"
+                    +"<th lay-data=\"{field:'grade',width: 290}\">" +"成绩 </th>"
                     +"</tr>"
                     +"</thead><tbody>";
                 grades.forEach(function (info_grade) {
 
-                    htm2=htm2+"<tr><td>"+info_grade.courseId+"</td>"
-                        +"<td>"+info_grade.name+"</td>"
+                    htm2=htm2+"<tr><td>"+info_grade.cno+"</td>"
+                        +"<td>"+info_grade.cname+"</td>"
                         +"<td>"+info_grade.daygrade+"</td>"
                         +"<td>"+info_grade.examgrade+"</td>"
                         +"<td>"+info_grade.grade+"</td>"
-                        +"<td>"+info_grade.credit+"</td></tr>";
                 });
                 htm2+="</tbody></table>";
                 $('#content').get(0).innerHTML=html1+htm2;
