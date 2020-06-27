@@ -253,6 +253,22 @@ function changeinfoButton(name) {
             return false;
         }
         data = {birthday: birthday};
+        $(function () {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: './userInfoChange?action=' + name,
+                data: data,
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg("修改成功", {icon: 1});
+                    } else {
+                        layer.msg("修改失败", {icon: 2});
+                    }
+                }
+            });
+
+        });
     }else if(name === 'changepassword'){
         let password =  $('input[name=password]').get(0).value;
         let repassword =  $('input[name=repassword]').get(0).value;
@@ -266,27 +282,28 @@ function changeinfoButton(name) {
         }else if (password === repassword) {
             data = {password: password};
         }
-    }
-    $(function () {
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: './userInfoChange?action=' + name,
-            data: data,
-            success: function (data) {
-                if (data.code === 200) {
-                    layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
-                    setTimeout(function () {
-                        window.location.href = "http://localhost:8080/login.jsp";
+        $(function () {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: './userInfoChange?action=' + name,
+                data: data,
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
+                        setTimeout(function () {
+                            //window.location.href = "http://123.56.2.196:8080/DB/login.jsp";
 
-                    }, 5000)
-                } else {
-                    layer.msg("修改失败", {icon: 2});
+                        }, 5000)
+                    } else {
+                        layer.msg("修改失败", {icon: 2});
+                    }
                 }
-            }
-        });
+            });
 
-    })
+        })
+    }
+
 
 
 

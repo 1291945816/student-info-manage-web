@@ -22,39 +22,44 @@ To change this template use File | Settings | File Templates.
 <!-- 别看了 写的是真的烂，真不会调位置，全程前端框架改改改，整自闭了都，就一个字，难受啊-->
 <!--导航栏-->
 <header>
-<ul class="layui-nav layui-bg-green" style="text-align: right; font-size: 20px">
-    <li class="layui-nav-item" style="right: 75em" >
-        <a style="font-size: 30px;color: aliceblue">教务系统</a>
-    </li>
-    <li class="layui-nav-item"><a href="#">首页</a></li>
-    <li class="layui-nav-item"><a href="login.jsp">登录</a></li>
-    <li class="layui-nav-item"><a onclick="aboutSystem()">关于系统</a></li>
-</ul>
+    <ul class="layui-nav layui-bg-green" style="text-align: right; font-size: 20px">
+        <li class="layui-nav-item" style="right: 75em">
+            <a style="font-size: 30px;color: aliceblue">教务系统</a>
+        </li>
+        <li class="layui-nav-item"><a href="#">首页</a></li>
+        <li class="layui-nav-item"><a href="login.jsp">登录</a></li>
+        <li class="layui-nav-item"><a onclick="aboutSystem()">关于系统</a></li>
+    </ul>
 </header>
 
 <!--主体内容-->
-<main >
+<main>
     <div class="container">
 
         <form class="layui-form" id="form_login" method="post">
-            <h1 class="welcome" style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">欢迎您,请登录</h1>
+            <h1 class="welcome"
+                style="color: whitesmoke;font-size: 40px ;position: relative; text-align: center;text-shadow: 0 0 0.3em #FFB800;top: -10px">
+                欢迎您,请登录</h1>
             <div class="layui-form-item">
-                <br />
+                <br/>
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">用户名</label>
                 <div class="layui-input-block">
-                    <input type="text"  name="username" required  lay-verify="required" placeholder="请输入学号/工号"  class="layui-input" style="width:200px;">
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入学号/工号"
+                           class="layui-input" style="width:200px;">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label" style="color: whitesmoke;font-size: 20px " >密码</label>
+                <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">密码</label>
                 <div class="layui-input-block">
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"   style="width:200px;" class="layui-input">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                           style="width:200px;" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="color: whitesmoke;font-size: 20px ">验证码</label>
                 <div class="layui-input-block">
-                    <input type="text" name="checkedCode" required lay-verify="required" placeholder="请输入结果" autocomplete="off"  style="width:200px;" class="layui-input">
+                    <input type="text" name="checkedCode" required lay-verify="required" placeholder="请输入结果"
+                           autocomplete="off" style="width:200px;" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -68,8 +73,10 @@ To change this template use File | Settings | File Templates.
                     <div class="layui-input-block">
                         <table border="0" style="border-collapse: separate;border-spacing: 10px">
                             <tr>
-                                <td><button  class="layui-btn" type="submit"  formaction="userLoginServlet" >学生登录</button>
-                                <td> <button  class="layui-btn" type="submit"  formaction="adminLoginServlet" >教师登录</button>
+                                <td>
+                                    <button class="layui-btn" type="submit" formaction="userLoginServlet">学生登录</button>
+                                <td>
+                                    <button class="layui-btn" type="submit" formaction="adminLoginServlet">教师登录</button>
                             </tr>
                         </table>
 
@@ -77,7 +84,8 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
             <!--输出错误消息-->
-            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getAttribute("error_msg")== null?" ":request.getAttribute("error_msg").toString()%></p>
+            <p style="font-size: 20px;color: red ;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87"><%= request.getAttribute("error_msg") == null ? " " : request.getAttribute("error_msg").toString()%>
+            </p>
         </form>
 
 
@@ -87,7 +95,7 @@ To change this template use File | Settings | File Templates.
 
 
 <!-- 页脚-->
-<footer >
+<footer>
     <ul class="layui-nav layui-bg-green" style="text-align: center;  font-size: 20px">
         <li class="layui-nav-item"><a href="login.jsp">帮助与反馈</a></li>
         <li class="layui-nav-item"><a href="mailto:huangpisong@kilig.ink">联系我们</a></li>
@@ -98,8 +106,14 @@ To change this template use File | Settings | File Templates.
 </footer>
 
 
-
-
 </body>
-<script src="./lib/js/login.js" ></script>
+<script src="./lib/js/login.js"></script>
+<script>
+    function aboutSystem() {
+        layui.use('layer', function () {
+            layer.msg("目前提供测试用例为:教师端:\n工号:13001 密码:admin\n\n学生端:\n学号:1800100100 密码:1234567\n");
+        })
+
+    }
+</script>
 </html>

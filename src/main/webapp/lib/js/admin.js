@@ -262,6 +262,11 @@ function add(name) {
             cname: cname,
             credit: credit
         };
+        if(ccode === "" || cname==="" || credit === "")
+        {
+            layer.msg("输入项不能够为空!",{icon:2});
+            return;
+        }
         $(function () {
             $.ajax({
                 type: "post",
@@ -282,6 +287,10 @@ function add(name) {
         var cno = $('input[name=cno]').get(0).value;
         var ccode = $('input[name=ccode]').get(0).value;
         var startdata = $('input[name=startdate]').get(0).value;
+        if(cno === "" || ccode ==="" || startdata ==="" ){
+            layer.msg("输入项不能够为空!",{icon:2});
+            return;
+        }
         data = {
             cno: cno,
             ccode: ccode,
@@ -373,7 +382,7 @@ function changeinfoButton(name) {
                 if (data.code === "200") {
                     layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
                     setTimeout(function () {
-                        window.location.href = "http://localhost:8080/login.jsp";
+                        window.location.href = "http://123.56.2.196:8080/DB/login.jsp";
 
                     }, 5000)
                 } else {
@@ -410,6 +419,10 @@ function add_teach_course() {
     let cno = $("input[name=cno]").get(0).value;
     let num = $("input[name=num]").get(0).value;
     let data = {cno: cno, num: num};
+    if(cno === "" || num === ""){
+        layer.msg("输入项不能够为空!",{icon:2});
+        return;
+    }
     $(function () {
         $.ajax({
             type: "post",
