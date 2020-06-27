@@ -21,11 +21,11 @@ function show_info() {
             let html = "<h1 style='text-align: center'>个人信息</h1>"
                 + "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >"
                 + "<tbody style='font-size: 30px'>"
-                + "<tr>" + "<td>name: </td>" + "<td>" + info.sname + "</td>" + "</tr>"
-                + "<tr>" + "<td>id: </td>" + "<td>" + info.sno + "</td>" + "</tr>"
-                + "<tr>" + "<td>sex: </td>" + "<td>" + info.ssex + "</td>" + "</tr>"
-                + "<tr>" + "<td>birthday: </td>" + "<td>" + info.birthday + "</td>" + "</tr>"
-                + "<tr>" + "<td>class: </td>" + "<td>" + info.clno + "</td>" + "</tr></tbody></table>";
+                + "<tr>" + "<td>姓名: </td>" + "<td>" + info.sname + "</td>" + "</tr>"
+                + "<tr>" + "<td>学号: </td>" + "<td>" + info.sno + "</td>" + "</tr>"
+                + "<tr>" + "<td>性别: </td>" + "<td>" + info.ssex + "</td>" + "</tr>"
+                + "<tr>" + "<td>出生日期: </td>" + "<td>" + info.birthday + "</td>" + "</tr>"
+                + "<tr>" + "<td>班别: </td>" + "<td>" + info.clno + "</td>" + "</tr></tbody></table>";
             $('#content').get(0).innerHTML=html;
 
 
@@ -129,11 +129,11 @@ function show_allCourseInfo() {
                     + "<table  lay-filter='data_parse'  >"
                     +"<thead>"
                     + "<tr>" +
-                    "<th lay-data=\"{field:'courseId ',width: 300,sort: true}\" >" +"courseId </th>"
-                    +"<th lay-data=\"{field:'name',width: 300}\">" +"name</th>"
-                    +"<th lay-data=\"{field:'startDate ',width: 200,sort:true}\">" +"startDate </th>"
-                    +"<th lay-data=\"{field:'credit',width: 300,sort:true}\">" +"credit </th>"
-                    +"<th lay-data=\"{field:'teacher',width: 290}\">" +"teacher </th>"
+                    "<th lay-data=\"{field:'courseId ',width: 300,sort: true}\" >" +"课号 </th>"
+                    +"<th lay-data=\"{field:'name',width: 300}\">" +"课程名称</th>"
+                    +"<th lay-data=\"{field:'startDate ',width: 200,sort:true}\">" +"开课学期 </th>"
+                    +"<th lay-data=\"{field:'credit',width: 300,sort:true}\">" +"学分 </th>"
+                    +"<th lay-data=\"{field:'teacher',width: 290}\">" +"教师 </th>"
                     +"</tr>"
                     +"</thead><tbody>";
                 courses.forEach(function (item) {

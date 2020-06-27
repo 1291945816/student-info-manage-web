@@ -27,8 +27,8 @@ To change this template use File | Settings | File Templates.
         <a style="font-size: 30px;color: aliceblue">教务系统</a>
     </li>
     <li class="layui-nav-item"><a href="#">首页</a></li>
-    <li class="layui-nav-item"><a href="login.jsp">登陆</a></li>
-    <li class="layui-nav-item"><a href="#">关于系统</a></li>
+    <li class="layui-nav-item"><a href="login.jsp">登录</a></li>
+    <li class="layui-nav-item"><a onclick="aboutSystem()">关于系统</a></li>
 </ul>
 </header>
 

@@ -57,6 +57,7 @@ public class GradeController  extends HttpServlet {
 
     private void query_selected_course(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         Teacher teacher = (Teacher) req.getSession().getAttribute("teacher");
+        if(teacher == null) return;
         Map<String,Object> map=new HashMap<>();
 
         List<Integer> selectedCourseCodeByTno = gradeDao.getSelectedCourseCodeByTno(teacher.getTno());

@@ -57,6 +57,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
     @Override
     public void query_teacherInfo(HttpServletRequest request, HttpServletResponse response) {
         Teacher login_teacher = (Teacher) request.getSession().getAttribute("teacher");
+        if(login_teacher == null) return;
 
         login_teacher.setPassword("");
         String s = JSON.toJSONString(login_teacher);
@@ -278,6 +279,7 @@ public class AdminServlet extends HttpServlet implements AdminService {
      */
     private void addteachcourse(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Teacher login_teacher = (Teacher) request.getSession().getAttribute("teacher");
+        if(login_teacher == null) return;
         Teachcourse cp = new Teachcourse();
 
         cp.setTno(login_teacher.getTno());

@@ -77,9 +77,15 @@ function add_grade() {
     let sno = $("input[name=sno]").get(0).value;
     let daygrade = $("input[name=daygrade]").get(0).value;
     let examgrade = $("input[name=examgrade]").get(0).value;
+    if ( select_value === ""  || sno === "" || examgrade === "" || daygrade === "")
+    {
+        layer.msg("输入不能为空", {icon: 2});
+        return;
+    }
+    console.log(sno);
 
-    if (daygrade !== null && examgrade !== null && sno !== null && select_value !== null && select_value !== '') {
-        console.log(121)
+
+    if (daygrade !== null && examgrade !== null && sno !== null && select_value !== null ) {
         let data = {
             selectccode: select_value,
             sno: sno,

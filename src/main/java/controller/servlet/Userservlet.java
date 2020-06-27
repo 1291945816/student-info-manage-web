@@ -70,7 +70,9 @@ public class Userservlet extends HttpServlet implements UserService {
 
     @Override
     public void query_allCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         Student login_student = (Student)  request.getSession().getAttribute("student");
+        if(login_student == null) return;
         login_student.setPassword("");
         List<SelectedCourse> list = userDao.querySelectedCourseBySno(login_student.getSno());
         Map<String,Object> map = new HashMap<>();
@@ -86,6 +88,7 @@ public class Userservlet extends HttpServlet implements UserService {
 
     private void query_departmentInfo(HttpServletRequest request, HttpServletResponse response){
         Student login_student = (Student)  request.getSession().getAttribute("student");
+        if(login_student == null) return;
         login_student.setPassword("");
         Department department = departmentDao.queryDepartmentInfoByClno(login_student.getClno());
         Map<String,Object> map = new HashMap<>();
@@ -104,6 +107,7 @@ public class Userservlet extends HttpServlet implements UserService {
     @Override
     public void query_classInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Student login_student = (Student)  request.getSession().getAttribute("student");
+        if(login_student == null) return;
         login_student.setPassword("");
         //获取学生班级信息
         Class_ class_ = userDao.query_classInfo(login_student);
@@ -124,6 +128,7 @@ public class Userservlet extends HttpServlet implements UserService {
     @Override
     public void query_studentInfo(HttpServletRequest request, HttpServletResponse response) {
         Student login_student = (Student)  request.getSession().getAttribute("student"); //获取登录的学生信息
+        if(login_student == null) return;
         login_student.setPassword("");
         String s = JSON.toJSONString(login_student);
         try {

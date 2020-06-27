@@ -60,6 +60,7 @@ public class AdminInfo extends HttpServlet {
     private void changepassword(HttpServletRequest  request,HttpServletResponse response) throws ServletException,IOException{
         String password = request.getParameter("password");
         Teacher login_teacher = (Teacher) request.getSession().getAttribute("teacher");
+        if(login_teacher == null) return;
         login_teacher.setPassword(MD5Utils.getMD5String(password));
         boolean b = adminDao.changePassword(login_teacher);
         Map<String,Object> map=new HashMap<>();

@@ -54,6 +54,7 @@ public class UserInfoChange extends HttpServlet {
 
     private void changepassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         Student login_student = (Student)  req.getSession().getAttribute("student");
+        if(login_student == null) return;
         login_student.setPassword(MD5Utils.getMD5String( req.getParameter("password")));//对前端传来的密码进行加密，再存入对象中
         //修改密码
         //根据返回的布尔值  分别向前端传值

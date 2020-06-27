@@ -61,6 +61,7 @@ public class UserSelectedCourse extends HttpServlet {
         String page = req.getParameter("page");
         String limit = req.getParameter("limit");
         Student student = (Student)req.getSession().getAttribute("student");
+        if(student == null) return;
         List<CourseInfo> list = userSelectedCourseDao.queryUnselectCourseBySno(student.getSno(), page, limit);
         Long num=userSelectedCourseDao.queryResult(student.getSno());
         Map<String,Object> map=new HashMap<>();
@@ -85,6 +86,7 @@ public class UserSelectedCourse extends HttpServlet {
 
     private void selectCourseforstudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = (Student)req.getSession().getAttribute("student");
+        if(student == null) return;
         String cno = req.getParameter("cno");
         Integer num = Integer.valueOf(req.getParameter("cnum"));
         Map<String,Object> map = new HashMap<>();

@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date: 2020/4/28 23:27
  * @description:
  */
-
+@WebFilter("/*")
 public class AuthFilter implements Filter {
     public void destroy() {
     }
@@ -23,10 +23,7 @@ public class AuthFilter implements Filter {
         HttpSession session=request.getSession();
         String username = (String) session.getAttribute("username");
         String uri=request.getRequestURI();
-        if(uri.endsWith("login.jsp") || uri.endsWith("userLoginServlet") || uri.endsWith("adminLoginServlet")||uri.endsWith("checkcode"))
-        {
-            chain.doFilter(request,response);
-        }else
+         if (uri.endsWith("admin.jsp") || uri.endsWith("student.jsp"))
         {
             if(username == null){
                 request.setAttribute("error_msg","请你重新登陆");
@@ -34,7 +31,9 @@ public class AuthFilter implements Filter {
             }else {
                 chain.doFilter(request,response);
             }
-        }
+        }else {
+             chain.doFilter(request,response);
+         }
 
     }
 
