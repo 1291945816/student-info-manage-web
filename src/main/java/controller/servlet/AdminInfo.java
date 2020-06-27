@@ -5,8 +5,7 @@ import controller.dao.AdminDaoImpl;
 import controller.dao.service.AdminDao;
 import controller.utils.MD5Utils;
 import model.pojo.Teacher;
-import org.omg.CORBA.PRIVATE_MEMBER;
-import sun.plugin.javascript.JSObject;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

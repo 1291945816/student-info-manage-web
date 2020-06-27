@@ -2,16 +2,15 @@ package controller.dao;
 
 import controller.dao.service.AdminDao;
 import controller.utils.JDBCUtils;
-import controller.utils.MD5Utils;
-import jdk.internal.util.xml.impl.ReaderUTF8;
+
 import model.pojo.*;
 import org.junit.Test;
 
-import java.io.IOException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Reader;
+
 
 /**
  * @author: Hps, CAgAG
@@ -32,6 +31,7 @@ public class AdminDaoImpl implements AdminDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
+
             JDBCUtils.closeConnection(connection);
         }
         return size;
@@ -53,7 +53,6 @@ public class AdminDaoImpl implements AdminDao {
             //展开分页查询，并且起始页由参数决定
             statement.setInt(1,(page-1)*limit_i);
             statement.setInt(2,limit_i);
-
             ResultSet resultSet = statement.executeQuery();
 
             resultSet.last();

@@ -45,6 +45,7 @@ public class JDBCUtils {
     }
     public static void closeConnection(Connection connection){
         try {
+
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -20,6 +20,7 @@ import java.io.IOException;
  */
 @WebServlet("/userLoginServlet")
 public class UserLoginServlet extends HttpServlet {
+    private final LoginDao userDao=new LoginDaoImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //获取参数值 （因为login.jsp文件中的表单的input标签的属性name为如下名字，便可以获得对应的值
@@ -30,7 +31,7 @@ public class UserLoginServlet extends HttpServlet {
         String check_result = (String)req.getSession().getAttribute("check_result");//获取本身生成的验证码结果
 
         if(check_result!=null && check_result.equals(checkCode)){
-            LoginDao userDao=new LoginDaoImpl();
+
 
             String username = req.getParameter("username");//获取用户名
             String password = req.getParameter("password"); //获取密码
