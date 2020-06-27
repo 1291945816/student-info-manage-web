@@ -71,6 +71,8 @@ public class UserSelectedCourseDaoImpl implements UserSelectedCourseDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return list;
     }
@@ -93,6 +95,8 @@ public class UserSelectedCourseDaoImpl implements UserSelectedCourseDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
 
         return num;

@@ -257,6 +257,10 @@ function add(name) {
         var ccode = $('input[name=ccode]').get(0).value;
         var cname = $('input[name=cname]').get(0).value;
         var credit = $('input[name=credit]').get(0).value;
+        if(!credit.match(/^[0-9]+([.]{1}[0-9]+){0,1}$/)|| !ccode.match(/^\w+$/) ){
+            layer.msg("请勿输入非法字符!", {icon: 2});
+            return;
+        }
         data = {
             ccode: ccode,
             cname: cname,
@@ -287,6 +291,12 @@ function add(name) {
         var cno = $('input[name=cno]').get(0).value;
         var ccode = $('input[name=ccode]').get(0).value;
         var startdata = $('input[name=startdate]').get(0).value;
+        var req=new RegExp("^[0-9]*$");
+        if(!req.test(cno)||  !ccode.match(/^\w+$/) ){
+            layer.msg("请勿输入非法字符!", {icon: 2});
+            return;
+        }
+
         if(cno === "" || ccode ==="" || startdata ==="" ){
             layer.msg("输入项不能够为空!",{icon:2});
             return;
@@ -350,17 +360,41 @@ function changeprofile() {
 
 function changeinfoButton(name) {
     let data, flag = false;
+
     if (name === 'changebirthday') {
         let birthday = $('input[name=birthday]').get(0).value;
+        var d = new Date(Date.parse(birthday.replace(/-/g,"/")));
+        let curDate=new Date();
         if (birthday === "") {
             layer.msg("输入不能为空", {icon: 2});
             return false;
+        }else if(curDate <= d){
+            layer.msg("输入时间不允许超过当前...", {icon: 2});
+            return false;
         }
         data = {birthday: birthday};
+        $(function () {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: './admininfo?action=' + name,
+                data: data,
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg("修改成功", {icon: 1});
+                    } else {
+                        layer.msg("修改失败", {icon: 2});
+                    }
+                }
+            });
+
+        });
+
 
     } else if (name === 'changepassword') {
         let password = $('input[name=password]').get(0).value;
         let repassword = $('input[name=repassword]').get(0).value;
+        var reg = new RegExp('^\\d{6}$');
 
         if (password === "" || repassword === "") {
             layer.msg("密码不能为空", {icon: 2});
@@ -369,29 +403,34 @@ function changeinfoButton(name) {
             layer.msg("两次输入的密码不一致", {icon: 2});
             return false;
         } else if (password === repassword) {
+            if(!reg.test(password)){
+                layer.msg("密码长度不够6位",{icon:2});
+                return false;
+            }
             data = {password: password};
+            $(function () {
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: './admininfo?action=' + name,
+                    data: data,
+                    success: function (data) {
+                        if (data.code === "200") {
+                            layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
+                            setTimeout(function () {
+                                window.location.href = "http://123.56.2.196:8080/DB/login.jsp";
+
+                            }, 5000)
+                        } else {
+                            layer.msg("修改失败", {icon: 2});
+                        }
+                    }
+                });
+
+            })
         }
     }
-    $(function () {
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: './admininfo?action=' + name,
-            data: data,
-            success: function (data) {
-                if (data.code === "200") {
-                    layer.msg("修改成功,5秒后会跳转到登陆页面...", {icon: 1});
-                    setTimeout(function () {
-                        window.location.href = "http://123.56.2.196:8080/DB/login.jsp";
 
-                    }, 5000)
-                } else {
-                    layer.msg("修改失败", {icon: 2});
-                }
-            }
-        });
-
-    })
 }
 
 
@@ -418,6 +457,12 @@ function add_teach_course() {
 
     let cno = $("input[name=cno]").get(0).value;
     let num = $("input[name=num]").get(0).value;
+    var req=new RegExp("^[0-9]*$ ");
+    if(! req.test(cno) || !req.test(num) )
+    {
+        layer.msg("课号和数量只能是数字!!!", {icon: 2});
+        return false;
+    }
     let data = {cno: cno, num: num};
     if(cno === "" || num === ""){
         layer.msg("输入项不能够为空!",{icon:2});

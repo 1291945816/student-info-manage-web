@@ -77,6 +77,11 @@ function add_grade() {
     let sno = $("input[name=sno]").get(0).value;
     let daygrade = $("input[name=daygrade]").get(0).value;
     let examgrade = $("input[name=examgrade]").get(0).value;
+    if(!daygrade.match(/^[0-9]+([.]{1}[0-9]+){0,1}$/) || !examgrade.match(/^[0-9]+([.]{1}[0-9]+){0,1}$/)){
+        layer.msg("请勿输入非法字符!", {icon: 2});
+        return;
+    }
+
     if ( select_value === ""  || sno === "" || examgrade === "" || daygrade === "")
     {
         layer.msg("输入不能为空", {icon: 2});

@@ -139,6 +139,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
           flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return flag;
     }
@@ -161,6 +163,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return flag;
     }
@@ -186,6 +190,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return flag;
     }
@@ -211,6 +217,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return flag;
     }
@@ -241,6 +249,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
 
         return flag;
@@ -271,6 +281,8 @@ public class AdminDaoImpl implements AdminDao {
 
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
 
         return flag;

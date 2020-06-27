@@ -248,8 +248,13 @@ function changeinfoButton(name) {
     let data;
     if(name === 'changebirthday'){
         let birthday = $('input[name=birthday]').get(0).value;
+        let d = new Date(Date.parse(birthday.replace(/-/g, "/")));
+        let curDate=new Date();
         if(birthday === ""){
             layer.msg("输入不能为空",{icon:2});
+            return false;
+        }else if(curDate <= d){
+            layer.msg("输入时间不允许超过当前...", {icon: 2});
             return false;
         }
         data = {birthday: birthday};
@@ -272,6 +277,9 @@ function changeinfoButton(name) {
     }else if(name === 'changepassword'){
         let password =  $('input[name=password]').get(0).value;
         let repassword =  $('input[name=repassword]').get(0).value;
+        var reg = new RegExp('^\\d{6}$');
+
+
 
         if(password === "" || repassword === ""){
             layer.msg("密码不能为空",{icon:2});
@@ -280,6 +288,10 @@ function changeinfoButton(name) {
             layer.msg("两次输入的密码不一致",{icon:2});
             return false;
         }else if (password === repassword) {
+            if(!reg.test(password)){
+                layer.msg("密码长度不够6位",{icon:2});
+                return false;
+            }
             data = {password: password};
         }
         $(function () {

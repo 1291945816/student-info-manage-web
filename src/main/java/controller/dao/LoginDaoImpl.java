@@ -43,6 +43,8 @@ public class LoginDaoImpl implements LoginDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
 
         return loginStudent;
@@ -72,6 +74,8 @@ public class LoginDaoImpl implements LoginDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
 
         return loginTeacher;

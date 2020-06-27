@@ -24,7 +24,7 @@ function select_course() {
                     width: 200
                 }, {field: 'cname', title: '课程名称', width: 200},
                     {field: 'tname', title: '教师', width: 200},
-                    {field: 'cnum', title: '数量', width: 200},
+                    {field: 'cnum', title: '剩余容量', width: 200},
                     {fixed: 'right', title: '操作', width: 200, align: 'center', toolbar: '#con'}
                 ]
             ],

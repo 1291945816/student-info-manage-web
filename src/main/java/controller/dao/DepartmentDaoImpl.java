@@ -40,6 +40,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
         } catch (SQLException e) {
             //e.printStackTrace();
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return result;
     }
@@ -100,6 +102,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
             }
         } catch (SQLException e) {
             flag=false;
+        }finally {
+            JDBCUtils.closeConnection(connection);
         }
         return flag;
     }

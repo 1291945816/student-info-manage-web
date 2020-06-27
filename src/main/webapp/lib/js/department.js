@@ -28,7 +28,15 @@ function addde_btn() {
     let dno = $('input[name=dno]').get(0).value;
     let dleader = $('input[name=dleader]').get(0).value;
     let dname = $('input[name=dname]').get(0).value;
-    if (dleader === "" || dno === "" || dname === "") {
+    var req=new RegExp("^[0-9]*$");
+    if(! req.test(dno) )
+    {
+        layer.msg("部门编号只能是数字！！！", {icon: 2});
+        return false;
+    }
+
+
+    if (dleader === "" || dno === "" || dname === "" ) {
 
         layer.msg("输入项不能为空!", {icon: 2});
         return false;
