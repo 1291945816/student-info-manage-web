@@ -29,12 +29,12 @@ function show_info() {
             let html = "<h1 style='text-align: center'>个人信息</h1>" +
                 "<table class='layui-table' lay-even lay-skin='nob' lay-size='lg' >" +
                 "<tbody style='font-size: 30px'>" +
-                "<tr>" + "<td>id: </td>" + "<td>" + info.tno + "</td>" + "</tr>" +
-                "<tr>" + "<td>name: </td>" + "<td>" + info.tname + "</td>" + "</tr>" +
-                "<tr>" + "<td>sex: </td>" + "<td>" + info.tsex + "</td>" + "</tr>" +
-                "<tr>" + "<td>birthday: </td>" + "<td>" + info.birthday + "</td>" + "</tr>" +
-                "<tr>" + "<td>job: </td>" + "<td>" + info.president + "</td>" + "</tr>" +
-                "<tr>" + "<td>department: </td>" + "<td>" + info.dno + "</td>" + "</tr></tbody></table>";
+                "<tr>" + "<td>工号: </td>" + "<td>" + info.tno + "</td>" + "</tr>" +
+                "<tr>" + "<td>姓名: </td>" + "<td>" + info.tname + "</td>" + "</tr>" +
+                "<tr>" + "<td>性别: </td>" + "<td>" + info.tsex + "</td>" + "</tr>" +
+                "<tr>" + "<td>生日: </td>" + "<td>" + info.birthday + "</td>" + "</tr>" +
+                "<tr>" + "<td>职业: </td>" + "<td>" + info.president + "</td>" + "</tr>" +
+                "<tr>" + "<td>部门: </td>" + "<td>" + info.dno + "</td>" + "</tr></tbody></table>";
             $('#content').get(0).innerHTML = html;
 
         }
