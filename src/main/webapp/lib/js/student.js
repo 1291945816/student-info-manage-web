@@ -83,7 +83,6 @@ function show_classInfo() {
                 +"</thead><tbody>";
             students_info.forEach(function (student_info) {
                 let id = student_info.sno;
-                console.log(student_info.sname)
                 html2=html2
                     +"<tr><td>"+id+"</td>"
                     +"<td>"+student_info.sname+"</td>"
